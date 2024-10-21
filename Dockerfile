@@ -1,14 +1,29 @@
-FROM node:20-alpine
+ARG NODE_VERSION=20.18.0
 
-WORKDIR /app
+FROM node:${NODE_VERSION}-slim as base
 
-RUN apk update && apk upgrade
-RUN apk add git
+ARG PORT=3000
 
-COPY ./package*.json /app/
+WORKDIR /src
 
-RUN npm install && npm cache clean --force
+# Build
+FROM base as build
 
-COPY . .
+COPY --link package.json package-lock.json ./
+RUN npm install
 
-ENV PATH=./node_modules/.bin/:$PATH
+COPY --link . .
+
+RUN npm run build
+
+# Run
+FROM base
+
+ENV PORT=$PORT
+ENV NODE_ENV=production
+
+COPY --from=build /src/.output /src/.output
+# Optional, only needed if you rely on unbundled dependencies
+# COPY --from=build /src/node_modules /src/node_modules
+
+CMD [ "node", ".output/server/index.mjs" ]

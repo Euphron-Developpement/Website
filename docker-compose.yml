@@ -1,13 +1,18 @@
-version: '3.3'
+volumes:
+    node_modules:
 services:
-  nuxt:
-    build:
-      context: .
-    image: nuxt_dev
-    container_name: euphron_frontend
-    command: npm run dev
-    volumes:
-      - .:/app
-      - /app/node_modules
-    ports:
-      - "3000:3000"
+    app_dev:
+        build:
+            context: .
+            dockerfile: ./Dockerfile.dev
+        ports:
+            - '3000:3000'
+            - '24678:24678'
+        volumes:
+            - .:/src
+            - node_modules:/src/node_modules
+    app:
+        build:
+            context: .
+        ports:
+            - '3000:3000'

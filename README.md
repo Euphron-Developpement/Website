@@ -1,75 +1,72 @@
 # Nuxt Minimal Starter
+___
+## Prérequis
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Assurez-vous d'avoir les éléments suivants installés sur votre machine :
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
 
-## Setup
+## Installation
 
-Make sure to install dependencies:
+Installez les dépendances du projet :
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+## Développement
 
-Start the development server on `http://localhost:3000`:
+Pour démarrer le serveur de développement sur `http://localhost:3000` :
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
+
+### Utilisation de Docker pour le développement
+
+Pour démarrer l'environnement de développement avec Docker :
+
+```bash
+docker-compose -f docker-compose.yml up --build app_dev
+```
+
+Cela va :
+- Construire l'image Docker définie dans `Dockerfile.dev`
+- Monter le répertoire de travail local dans le conteneur
+- Exposer les ports 3000 et 24678
+
+Pour prévisualiser localement la build de production :
+
+```bash
+npm run preview
+```
+___
 
 ## Production
 
-Build the application for production:
+### Utilisation de Docker pour la production
+
+Pour construire et démarrer le conteneur Docker en mode production :
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+docker-compose up --build app
 ```
 
-Locally preview production build:
+Cela va :
+- Construire l'image Docker définie dans `Dockerfile`
+- Exposer le port 3000
+___
 
-```bash
-# npm
-npm run preview
+## Documentation
 
-# pnpm
-pnpm preview
+Consultez la [documentation de Nuxt](https://nuxt.com/docs/getting-started/introduction) pour plus d'informations.
+___
 
-# yarn
-yarn preview
+## Déploiement
 
-# bun
-bun run preview
-```
+Pour plus d'informations sur le déploiement, consultez la [documentation de déploiement](https://nuxt.com/docs/getting-started/deployment).
+___
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Références
+
+- [Implémentation Docker](https://markus.oberlehner.net/blog/running-nuxt-3-in-a-docker-container/)
