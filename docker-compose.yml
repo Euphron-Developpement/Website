@@ -2,6 +2,7 @@ volumes:
     node_modules:
 services:
     app_dev:
+        container_name: euphron_frontend_dev
         build:
             context: .
             dockerfile: ./Dockerfile.dev
@@ -12,7 +13,9 @@ services:
             - .:/src
             - node_modules:/src/node_modules
     app:
+        container_name: euphron_frontend
         build:
             context: .
+            dockerfile: ./Dockerfile
         ports:
             - '3000:3000'

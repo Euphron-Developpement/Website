@@ -2,6 +2,10 @@ ARG NODE_VERSION=20.18.0
 
 FROM node:${NODE_VERSION}-slim as base
 
+ENV TERM=xterm-256color
+RUN echo "PS1='\e[92m\u\e[0m@\e[94m\h\e[0m:\e[35m\w\e[0m# '" >> /root/.bashrc
+
+
 ARG PORT=3000
 
 WORKDIR /src
