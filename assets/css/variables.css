@@ -1,0 +1,10 @@
+/* assets/styles/variables.css */
+@import url('https://fonts.googleapis.com/css2?family=Stevie+Sans:wght@400;700&display=swap');
+
+:root {
+    --font-primary: 'Stevie Sans', sans-serif;
+    --primary-white: #F8FAEC;
+    --primary-red: #BE2625;
+    --primary-black: #2F2F2F;
+}  
+
