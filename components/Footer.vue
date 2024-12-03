@@ -63,7 +63,7 @@
       </div>
       <div class="footer_part">
         <h2>Évènement</h2>
-        <a>Réservations</a>
+        <a> Réservations</a>
       </div>
 
       <div class="footer_part">
@@ -127,6 +127,7 @@
 </template>
 <style scoped>
 footer {
+  font-family: Montserrat, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
