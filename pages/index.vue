@@ -1,6 +1,16 @@
 <template>
   <div>
-    <h1>Welcome to the Home Page!</h1>
-    <p>This is the home page!</p>
+    <h1>TEST</h1>
+    <Footer />
   </div>
 </template>
+
+<script>
+import Footer from "~/components/footer.vue";
+
+export default {
+  components: {
+    Footer,
+  },
+};
+</script>
