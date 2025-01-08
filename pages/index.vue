@@ -7,11 +7,22 @@ import NavBar from '../components/NavBar.vue'
 
 
 <template>
-
-<NavBar>
+<body>
+  <NavBar>
 
 </NavBar>
+</body>
+
 
   This is the home page
 </template>
 
+<style>
+  @import url('https://fonts.cdnfonts.com/css/druk-text-wide-trial');
+</style>
+                
+<style scoped>
+body{
+  background-color: #F8FAEC;
+}
+</style>

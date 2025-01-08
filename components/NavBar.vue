@@ -7,11 +7,11 @@
           </div>
 
           <div class="ButtonNav">
-            <a class="TextNav">À propos</a>
+            <a class="TextNav">A propos</a>
           </div>
 
           <div class="ButtonNav">
-            <a class="TextNav">Évènement</a>
+            <a class="TextNav">Evenement</a>
           </div>
 
           <div class="ButtonNav">
@@ -22,9 +22,7 @@
             <a class="TextNav">Contact</a>
           </div>
 
-          <div class="ButtonNav">
-            <a class="TextNav">Connexion</a>
-          </div>
+         
       </div>
       <div class="ConteneurImage">
         <div class="ButtonImg">
@@ -72,20 +70,21 @@ nav{
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  background-color: white;
-   border:  1px solid black;
+  background-color: #F8FAEC;
+   border:  1px solid white;
    border-radius: 36px;
-  box-shadow: 3px 3px 3px gray;
+  box-shadow: 2px 2px 2px #00000040;
 }
 
 .NavBtn{
- 
+  margin-left: 15px;
   display: flex;
    height: 51px;
    width: 987;
    justify-content: center;
    align-items: center;
    flex-direction: row; 
+ 
    
 }
 
@@ -93,17 +92,13 @@ nav{
   display: flex;
   justify-content: center;
   flex-direction: row; 
- margin-top: 65px;
-
-   align-items: center;
+  margin-top: 65px;
+  align-items: center;
 }
 
 .ButtonNav{
-width: 125px;
-
-top: 81px;
-left: 88px;
-gap: 0px;
+margin-left: 17px;
+gap: 0px;   
 opacity: 0px;
 align-items: center;
 text-align: center;
@@ -112,20 +107,20 @@ text-align: center;
 
 .ButtonImg{
 
-opacity: 0px;
+
 align-items: center;
 text-align: center;
 
 }
 
 .TextNav{
-font-family: 'Druk Text Wide Trial', sans-serif;; /* Druk Text Wide Trial*/  
-font-size: 20px;
+font-family: 'Druk Text Wide Trial', sans-serif; /* Druk Text Wide Trial*/  
+font-size: 14px;
 font-weight: 700;
 line-height: 120px;
 text-align: center;
 text-decoration-skip-ink: none; 
-color: black
+color: #2F2F2F;
 
 
 
@@ -133,13 +128,7 @@ color: black
 }
 
 .ButtonNav :hover{
-width: 125px;
 
-top: 81px;
-left: 88px;
-gap: 0px;
-opacity: 0px;
-font-size: 18px;
 text-align: center;
 color: #BE2625;
 
@@ -151,7 +140,11 @@ color: #BE2625;
   display: flex;
   align-items: center;
   flex-direction: row;
-  gap: 15px;
+ 
+}
+
+@media (max-width: 480px) {
+  
 }
 
 
