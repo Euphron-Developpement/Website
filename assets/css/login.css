@@ -44,11 +44,12 @@ label {
 }
 
 input {
-  width: 100%;
+  /* width: 100%; */
   padding: 12px 12px 12px 5px; 
   border: 1.5px solid #000;
   background: none;
   font-size: 14px;
+  width: -webkit-fill-available;
 }
 
 .submit-btn {
