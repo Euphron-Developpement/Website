@@ -1,5 +1,5 @@
 <script setup>
-import "~/assets/css/inscription.css";
+import "~/assets/css/register.css";
 </script>
 
 <template>
