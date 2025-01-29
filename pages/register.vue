@@ -1,5 +1,27 @@
 <script setup>
+import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
 import "~/assets/css/register.css";
+
+const prenom = ref('');
+const nom = ref('');
+const email = ref('');
+const password = ref('');
+const confirmPassword = ref('');
+
+const router = useRouter();
+
+const isFormValid = computed(() => {
+    return prenom.value && nom.value && email.value && password.value && confirmPassword.value;
+});
+
+const handleSubmit = () => {
+    if (isFormValid.value) {
+        router.push('/');
+    } else {
+        alert('Veuillez remplir tous les champs.');
+    }
+};
 </script>
 
 <template>
@@ -27,11 +49,11 @@ import "~/assets/css/register.css";
             </div>
 
             <div class="form-group">
-                <label for="password">Confirmation de mot de passe</label>
-                <input v-model="password" type="password" id="confirm-password"/>
+                <label for="confirm-password">Confirmation de mot de passe</label>
+                <input v-model="confirmPassword" type="password" id="confirm-password"/>
             </div>
 
-            <button type="submit" class="submit-btn">S'inscrire</button>
+            <button type="submit" class="submit-btn" :class="{ 'active-btn': isFormValid }">S'inscrire</button>
             <p class="already-account">
                 <a href="#">J'ai déjà un compte</a>
             </p>
