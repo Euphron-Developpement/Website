@@ -8,32 +8,27 @@ import "~/assets/css/inscription.css";
         <form @submit.prevent="handleSubmit" id="registration-form">
             <div class="form-group">
                 <label for="prenom">Prénom</label>
-                <input v-model="prenom" type="text" id="prenom"
-                    placeholder="______________________________________________________________" />
+                <input v-model="prenom" type="text" id="prenom"/>
             </div>
 
             <div class="form-group">
                 <label for="nom">Nom</label>
-                <input v-model="nom" type="text" id="nom"
-                    placeholder="______________________________________________________________" />
+                <input v-model="nom" type="text" id="nom"/>
             </div>
 
             <div class="form-group">
                 <label for="email">Adresse mail</label>
-                <input v-model="email" type="email" id="email"
-                    placeholder="______________________________________________________________" />
+                <input v-model="email" type="email" id="email"/>
             </div>
 
             <div class="form-group">
                 <label for="password">Mot de passe</label>
-                <input v-model="password" type="password" id="password"
-                    placeholder="______________________________________________________________" />
+                <input v-model="password" type="password" id="password"/>
             </div>
 
             <div class="form-group">
                 <label for="password">Confirmation de mot de passe</label>
-                <input v-model="password" type="password" id="confirm-password"
-                    placeholder="______________________________________________________________" />
+                <input v-model="password" type="password" id="confirm-password"/>
             </div>
 
             <button type="submit" class="submit-btn">S'inscrire</button>
