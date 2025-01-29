@@ -12,6 +12,7 @@ const handleSubmit = () => {
 </script>
 
 <template>
+
   <div class="form-container">
     <div class="header-container">
         <h1>Se Connecter</h1>
@@ -29,8 +30,29 @@ const handleSubmit = () => {
         <input v-model="password" type="password" id="password" placeholder=""/>
       </div>
 
-      <button type="submit" class="submit-btn">Se Connecter</button>
+      <button type="submit" class="submit-btn">Connexion</button>
     </form>
   </div>
 
 </template>
+
+<style scoped>
+.form-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-container {
+    padding: 10px;
+  }
+}
+</style>

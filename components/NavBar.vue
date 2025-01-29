@@ -139,4 +139,46 @@ color: #BE2625;
 }
 
 
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .NavBtn {
+    flex-direction: column;
+    width: auto;
+  }
+
+  .ButtonNav {
+    margin: 10px 0;
+  }
+
+  .ConteneurImage {
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .NavBtn {
+    flex-direction: column;
+    width: auto;
+  }
+
+  .ButtonNav {
+    margin: 5px 0;
+  }
+
+  .ConteneurImage {
+    margin: 5px 0;
+  }
+}
+
+
 </style>
+
