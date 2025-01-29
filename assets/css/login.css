@@ -20,14 +20,6 @@ body {
   margin-bottom: 30px;
 }
 
-.back-button {
-  position: absolute;
-  left: 0;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-}
 
 h1 {
   font-size: 24px;
@@ -72,7 +64,7 @@ input {
   background-color: #BE2625;
 }
 
-.form-group::after {
+/* .form-group::after { . <= tirets estéthiques à l'interieur des cases 
   content: "";
   position: absolute;
   bottom: 12px;
@@ -80,4 +72,4 @@ input {
   width: 80%; 
   height: 1px;
   background-color: #000;
-}
+} */
