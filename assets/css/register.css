@@ -1,0 +1,82 @@
+.form-container {
+    padding: 40px;
+    max-width: 500px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Druk Text Wide Trial', sans-serif;
+    color: #2f2f2f;
+    font-size: 32px;
+    margin-bottom: 40px;
+    white-space: nowrap;
+}
+
+.form-group {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+label {
+    font-family: 'Stevie Sans', sans-serif;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 20px;
+}
+
+.submit-btn {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #2f2f2f;
+    color: #ffffff;
+    padding: 10px 80px;
+    border: none;
+    cursor: not-allowed;
+    transition: background-color 0.3s, opacity 0.3s;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.submit-btn.active-btn {
+    background-color: #BE2625;
+    cursor: pointer;
+}
+.already-account {
+    margin-top: 15px;
+}
+
+a {
+    font-size: 18px;
+    color: #2f2f2f;
+}
+
+@media (max-width: 600px) {
+    .form-container {
+        padding: 20px;
+        margin: 20px;
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    input {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .submit-btn {
+        padding: 10px 40px;
+        font-size: 18px;
+    }
+}
