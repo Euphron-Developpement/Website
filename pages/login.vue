@@ -13,12 +13,12 @@ import "~/assets/css/login.css";
 
       <div class="form-group">
         <label for="email">Adresse mail</label>
-        <input v-model="email" type="email" id="email" placeholder="Votre adresse mail" />
+        <input v-model="email" type="email" id="email"  />
       </div>
 
       <div class="form-group">
         <label for="password">Mot de passe</label>
-        <input v-model="password" type="password" id="password" placeholder="Votre mot de passe" />
+        <input v-model="password" type="password" id="password" />
       </div>
 
       <button type="submit" class="submit-btn">Se Connecter</button>
