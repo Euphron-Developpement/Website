@@ -7,15 +7,15 @@ services:
             context: .
             dockerfile: ./Dockerfile.dev
         ports:
-            - '8080:3000'
+            - '8081:3000'
             - '24678:24678'
         volumes:
             - .:/src
             - node_modules:/src/node_modules
-    app:
-        container_name: euphron_frontend
-        build:
-            context: .
-            dockerfile: ./Dockerfile
-        ports:
-            - '8080:3000'
+    # app:
+    #     container_name: euphron_frontend
+    #     build:
+    #         context: .
+    #         dockerfile: ./Dockerfile
+    #     ports:
+    #         - '8080:3000'
