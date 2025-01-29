@@ -12,9 +12,7 @@ import NavBar from '../components/NavBar.vue'
 
 </NavBar>
 </body>
-
-
-  This is the home page
+  TEST
 </template>
 
 <style>
