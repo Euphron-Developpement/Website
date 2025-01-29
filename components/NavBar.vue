@@ -27,48 +27,21 @@
       <div class="ConteneurImage">
         
         <div class="ButtonImg">
-  <router-link to="/login">
-    <svg
-      width="35"
-      height="35"
-      viewBox="0 0 57 57"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <g filter="url(#filter0_b_124_194)">
-        <path
-          d="M13.957 45.2207C13.957 37.4887 20.3743 31.2207 28.2904 31.2207C36.2065 31.2207 42.6237 37.4887 42.6237 45.2207H39.0404C39.0404 39.4217 34.2274 34.7207 28.2904 34.7207C22.3533 34.7207 17.5404 39.4217 17.5404 45.2207H13.957ZM28.2904 29.4707C22.351 29.4707 17.5404 24.772 17.5404 18.9707C17.5404 13.1695 22.351 8.4707 28.2904 8.4707C34.2297 8.4707 39.0404 13.1695 39.0404 18.9707C39.0404 24.772 34.2297 29.4707 28.2904 29.4707ZM28.2904 25.9707C32.2499 25.9707 35.457 22.8382 35.457 18.9707C35.457 15.1032 32.2499 11.9707 28.2904 11.9707C24.3308 11.9707 21.1237 15.1032 21.1237 18.9707C21.1237 22.8382 24.3308 25.9707 28.2904 25.9707Z"
-          fill="#2F2F2F"
-        />
-      </g>
-      <defs>
-        <filter
-          id="filter0_b_124_194"
-          x="-100"
-          y="-100"
-          width="257"
-          height="257"
-          filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
-        >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
-          <feGaussianBlur in="BackgroundImageFix" stdDeviation="50" />
-          <feComposite
-            in2="SourceAlpha"
-            operator="in"
-            result="effect1_backgroundBlur_124_194"
-          />
-          <feBlend
-            mode="normal"
-            in="SourceGraphic"
-            in2="effect1_backgroundBlur_124_194"
-            result="shape"
-          />
-        </filter>
-      </defs>
-    </svg>
-  </router-link>
-</div>
+          <svg width="35" height="35" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#filter0_b_124_194)">
+            <path d="M13.957 45.2207C13.957 37.4887 20.3743 31.2207 28.2904 31.2207C36.2065 31.2207 42.6237 37.4887 42.6237 45.2207H39.0404C39.0404 39.4217 34.2274 34.7207 28.2904 34.7207C22.3533 34.7207 17.5404 39.4217 17.5404 45.2207H13.957ZM28.2904 29.4707C22.351 29.4707 17.5404 24.772 17.5404 18.9707C17.5404 13.1695 22.351 8.4707 28.2904 8.4707C34.2297 8.4707 39.0404 13.1695 39.0404 18.9707C39.0404 24.772 34.2297 29.4707 28.2904 29.4707ZM28.2904 25.9707C32.2499 25.9707 35.457 22.8382 35.457 18.9707C35.457 15.1032 32.2499 11.9707 28.2904 11.9707C24.3308 11.9707 21.1237 15.1032 21.1237 18.9707C21.1237 22.8382 24.3308 25.9707 28.2904 25.9707Z" fill="#2F2F2F"/>
+            </g>
+            <defs>
+            <filter id="filter0_b_124_194" x="-100" y="-100" width="257" height="257" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feGaussianBlur in="BackgroundImageFix" stdDeviation="50"/>
+            <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_124_194"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_124_194" result="shape"/>
+            </filter>
+            </defs>
+          </svg>
+
+        </div>
       </div>  
   </nav>
  

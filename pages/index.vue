@@ -1,7 +1,13 @@
 <script setup>
 import { ref } from 'vue'
 import NavBar from '../components/NavBar.vue'
+import Login from './login.vue'
+
+
+
 </script>
+
+
 
 
 
@@ -12,7 +18,11 @@ import NavBar from '../components/NavBar.vue'
 
 </NavBar>
 </body>
-  TEST
+  
+<Login>
+  
+</Login>
+
 </template>
 
 <style>
