@@ -1,29 +1,48 @@
 <template>
   <div class="contentNav">
     <nav>
-      <div class="NavBtn">
+      <div :class="{ NavBtn: true, active: navOpen }">
+        <div class="close_nav" @click="toggleNav()">Fermer la navBar</div>
         <div class="ButtonNav">
-          <a class="TextNav">Accueil</a>
+          <a href="/" :class="{ TextNav: true, active: isActive('/') }"
+            >Accueil</a
+          >
         </div>
 
         <div class="ButtonNav">
-          <a class="TextNav">A propos</a>
+          <a
+            href="/propos"
+            :class="{ TextNav: true, active: isActive('/about') }"
+            >A propos</a
+          >
         </div>
 
         <div class="ButtonNav">
-          <a class="TextNav">Evenement</a>
+          <a
+            href="/event"
+            :class="{ TextNav: true, active: isActive('/event') }"
+            >Evenement</a
+          >
         </div>
 
         <div class="ButtonNav">
-          <a class="TextNav">Article</a>
+          <a
+            href="/article"
+            :class="{ TextNav: true, active: isActive('/article') }"
+            >Article</a
+          >
         </div>
 
         <div class="ButtonNav">
-          <a href="./contact" class="TextNav">Contact</a>
+          <a
+            href="/contact"
+            :class="{ TextNav: true, active: isActive('/contact') }"
+            >Contact</a
+          >
         </div>
       </div>
       <div class="ConteneurImage">
-        <div class="ButtonImg">
+        <a href="/login" class="ButtonImg">
           <svg
             width="35"
             height="35"
@@ -63,7 +82,8 @@
               </filter>
             </defs>
           </svg>
-        </div>
+        </a>
+        <div class="burger_nav" @click="toggleNav()"></div>
       </div>
     </nav>
   </div>
@@ -71,16 +91,32 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+const navOpen = ref(false);
+
+const isActive = (path) => {
+  return route.path === path;
+};
+
+const toggleNav = () => {
+  navOpen.value = !navOpen.value;
+  document.body.style.overflowX = navOpen.value ? 'hidden' : 'auto';
+};
 </script>
+
 <style scoped>
 nav {
   display: flex;
   justify-content: space-between;
-  flex-direction: row;
+  align-items: center;
   background-color: #f8faec;
   border: 1px solid white;
-  border-radius: 36px;
+  border-radius: 999px;
   box-shadow: 2px 2px 2px #00000040;
+  min-height: 4.5rem;
+  width: 70vw;
 }
 
 .NavBtn {
@@ -90,13 +126,13 @@ nav {
   width: 987;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+  gap: 1rem;
+  transition: all 0.3s ease-in-out;
 }
 
 .contentNav {
   display: flex;
   justify-content: center;
-  flex-direction: row;
   margin-top: 65px;
   align-items: center;
 }
@@ -110,17 +146,18 @@ nav {
 }
 
 .ButtonImg {
+  display: flex;
   align-items: center;
   text-align: center;
 }
 
 .TextNav {
-  font-family: 'Druk Text Wide Trial', sans-serif; /* Druk Text Wide Trial*/
-  font-size: 14px;
+  font-family: 'Druk Text Wide Trial', sans-serif;
+  font-size: 20px;
   font-weight: 700;
   line-height: 120px;
   text-align: center;
-  text-decoration-skip-ink: none;
+  text-decoration: none;
   color: #2f2f2f;
 }
 
@@ -130,13 +167,78 @@ nav {
 }
 
 .ConteneurImage {
-  margin-left: 100px;
   margin-right: 30px;
   display: flex;
   align-items: center;
-  flex-direction: row;
 }
 
-@media (max-width: 480px) {
+.active {
+  color: #be2625;
+}
+.burger_nav {
+  display: none;
+  background-color: #2f2f2f;
+  border-radius: 999px;
+  width: 50px;
+  aspect-ratio: 1/1;
+  box-shadow: 0px 4px 4px #00000040;
+}
+.close_nav {
+  display: none;
+  background-color: #f8faec;
+  color: #2f2f2f;
+  padding: 4px;
+  cursor: pointer;
+}
+@media (max-width: 1180px) {
+  .NavBtn {
+    gap: 0;
+  }
+  .TextNav {
+    font-size: 16px;
+  }
+}
+@media (max-width: 910px) {
+  nav {
+    width: 80vw;
+  }
+  .ButtonNav {
+    margin-left: 13px;
+  }
+}
+@media (max-width: 768px) {
+  .contentNav {
+    margin-top: 1rem;
+  }
+  nav {
+    width: 93vw;
+    box-shadow: none;
+    justify-content: end;
+  }
+  .close_nav {
+    display: block;
+  }
+  .NavBtn {
+    position: absolute;
+    height: 100vh;
+    right: 0;
+    top: 0;
+    width: 90vw;
+    background-color: #2f2f2f;
+    flex-direction: column;
+    transform: translateX(100%);
+  }
+  .NavBtn.active {
+    transform: translateX(0);
+  }
+  .TextNav {
+    color: #f8faec;
+  }
+  .burger_nav {
+    display: block;
+  }
+  .ConteneurImage {
+    margin: 0;
+  }
 }
 </style>
