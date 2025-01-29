@@ -3,11 +3,13 @@ import NavBar from './components/NavBar.vue';
 </script>
 
 <template>
-  <div>
-    <NavBar />
-    <NuxtPage />
-    <Footer />
-  </div>
+  <body>
+    <div>
+      <NavBar />
+      <NuxtPage />
+      <Footer />
+    </div>
+  </body>
 </template>
 
 <style>
