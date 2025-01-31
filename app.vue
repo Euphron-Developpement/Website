@@ -18,6 +18,7 @@ import NavBar from './components/NavBar.vue';
 
 <style scoped>
 body {
+  overflow-x: hidden;
   background-color: #f8faec;
 }
 </style>
