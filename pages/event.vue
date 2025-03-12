@@ -54,7 +54,8 @@
                                 <li>Une soirée conviviale pour partager l'amour du noble art.</li>
                             </ul>
                         </div>
-                        <div class="reservation_form">
+                        <!-- Partie reservation -->
+                        <div class="reservation_form" v-show="isReservationVisible">
                             <div v-for="visitor in visitors" :key="visitor.id" class="visitor">
                                 <div class="visitor_date">
                                     <p>12/03/2025</p>
@@ -86,6 +87,39 @@
                                 </button>
                             </div>
                         </div>
+                        <!-- Partie Commande -->
+                        <div class="commande_form" v-show="isCommandeVisible">
+                            <div v-for="visitor in visitors" :key="visitor.id" class="visitor">
+                                <div class="visitor_date">
+                                    <p>12/03/2025</p>
+                                </div>
+                                <div @click="toggleDropdown(visitor.id)" class="visitor_age">
+                                    <p>{{ visitor.selectedOption ? visitor.selectedOption : "Selectionner" }}</p>
+                                    <div v-if="visitor.isDropdownVisible" class="dropdown_menu">
+                                        <select v-model="visitor.selectedOption" @change="toggleDropdown(visitor.id)" @click.stop required>
+                                            <option value="- 16 ans">- 16 ans</option>
+                                            <option value="18 - 30 ans">18 - 30 ans</option>
+                                            <option value="30 ans +">30 ans +</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="visitor_count">
+                                    <button @click="changeVisitorCount(visitor.id, false)" type="button">&#60;</button>
+                                    <p>{{ visitor.count }}</p>
+                                    <button @click="changeVisitorCount(visitor.id, true)" type="button">&#62;</button>
+                                </div>
+                            </div>
+                            <button @click="addVisitor" type="button" class="add_visitor">+</button>
+                            <div style="width: 100%; display: flex; justify-content: end;">
+                                <button 
+                                    @click="reserve" 
+                                    type="button" 
+                                    :class="canReserve ? 'confirm_visitor_red' : 'confirm_visitor_black'"
+                                >
+                                    Commander
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -107,6 +141,10 @@
 
     // Vérifie si un visiteur majeur est présent
     const canReserve = ref(false);
+
+    // Etat de visibilitée de la partie basse de la modale
+    const isReservationVisible = ref(true)
+    const isCommandeVisible = ref(false)
 
     // Structure du visiteur
     interface Visitor {
@@ -165,11 +203,17 @@
     const reserve = () => {
     if (canReserve.value) {
         alert("Réservation effectuée");
-        // Logique de réservation ici
+        changeModalForm();
     } else {
         alert("Impossible d'effectuer la réservation.\nAu moin l'un d'entre vous doit etre majeur.");
     }
     };
+
+    // Toggle contenu de la modale (reservation / commande)
+    const changeModalForm = () => {
+        isReservationVisible.value = false;
+        isCommandeVisible.value = true;
+    }
 
     // Empêche le scroll du body quand la modale est ouverte
     watch(showModal, (newValue) => {
@@ -303,7 +347,7 @@ body.modal_open {
     width: 50%;
 }
 
-.reservation_form {
+.reservation_form, .commande_form {
     width: 50%;
     height: 100%;
     display: flex;
@@ -339,6 +383,7 @@ body.modal_open {
 
 .visitor_age {
     cursor: pointer;
+    font-size: 14px;
 }
 
 .visitor_count {
@@ -388,7 +433,7 @@ body.modal_open {
     width: 40%;
     height: 30px;
     border: none;
-    font-size: 16px;
+    font-size: calc(0.2rem + 1vw);
     color: #F8FAEC;
     cursor: pointer;
 }
@@ -418,6 +463,10 @@ body.modal_open {
     .event_image img {
         aspect-ratio: 1/1;
     }
+
+    .visitor_age {
+        font-size: 12px;
+    }
 }
 
 @media screen and (max-width: 920px) {
@@ -425,6 +474,15 @@ body.modal_open {
         width: 100px;
         height: 100px;
         font-size: 12px;
+    }
+
+    .reservation_modal {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .reservation_form, .reservation_text {
+        width: 100%;
     }
 }
 
