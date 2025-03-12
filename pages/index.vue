@@ -10,9 +10,7 @@ import BodyHome from '~/components/BodyHome.vue';
 
 <template>
 <body>
-  <NavBar>
 
-</NavBar>
 
 <BodyHome>
   
