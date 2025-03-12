@@ -1,60 +1,8 @@
 <script setup>
 import { onMounted } from "vue";
+import Carrousel from "./carrousel.vue";
 
-function AffichageDescription() {
-  const Bulle1 = document.getElementById("Bulle1");
-  const Bulle2 = document.getElementById("Bulle2");
-  const Bulle3 = document.getElementById("Bulle3");
-
-  [Bulle1, Bulle2, Bulle3].forEach((bulle) => {
-    console.log(bulle?.id); // Utilisation de l'opérateur "?" pour éviter une erreur si bulle est null
-    let bulleInfo = null;
-    let CadreBulle = null;
-    switch (bulle?.id) {
-      case "Bulle1":
-        CadreBulle = document.getElementById("CadreBulle1");
-        bulleInfo = document.getElementById("BulleInfo1");
-        break;
-      case "Bulle2":
-        CadreBulle = document.getElementById("CadreBulle2");
-        bulleInfo = document.getElementById("BulleInfo2");
-
-        break;
-      case "Bulle3":
-        CadreBulle = document.getElementById("CadreBulle3");
-        bulleInfo = document.getElementById("BulleInfo3");
-
-        break;
-    }
-
-    if (bulle && CadreBulle) {
-      bulle.style.position = "relative";
-      bulle.addEventListener("mouseover", () => {
-        let PositionIniBulle = bulle.getBoundingClientRect();
-        CadreBulle.style.display = "flex";
-
-        CadreBulle.style.position = "absolute";
-        // CadreBulle.style.top = PositionIniBulle.top + "px";
-        CadreBulle.style.left = PositionIniBulle.left - 30 + "px";
-
-        bulle.style.height = "200px";
-        bulle.style.width = "200px";
-        // bulleInfo.style.display = "block";
-      });
-
-      bulle.addEventListener("mouseout", () => {
-        bulle.style.width = "";
-        bulle.style.height = "";
-        CadreBulle.style.display = "none";
-        // bulleInfo.style.display = "none";
-      });
-    }
-  });
-}
-
-onMounted(() => {
-  // AffichageDescription();
-});
+onMounted(() => {});
 </script>
 
 <template>
@@ -162,74 +110,9 @@ onMounted(() => {
       />
     </svg>
   </div>
-  <div class="Section">
-    <div class="Prochainement">
-      <div class="SectionTitle">
-        <h2>PROCHAINEMENT</h2>
-      </div>
 
-      <div class="NextArticlePicture">
-        <a class="NextArticleCadre">
-          <img
-            class="ImgNextPicture"
-            id="Bulle1"
-            src="../assets/Pictures/Article/7b30c0f1cf4abb64a082e03d0be3b917.jpg"
-            alt="article 1 "
-          />
-          <div class="CarerDescription" id="CadreBulle1"></div>
-          <div class="BulleInfo" id="BulleInfo1">
-            Description de l'article 1
-          </div>
-        </a>
-
-        <a class="NextArticleCadre">
-          <img
-            class="ImgNextPicture"
-            id="Bulle2"
-            src="../assets/Pictures/Article/0394f16a001746ba67d1b06d046070b3.jpg"
-            alt="article 2"
-          />
-          <div class="CarerDescription" id="CadreBulle2"></div>
-          <div class="BulleInfo" id="BulleInfo2">
-            Description de l'article 2
-          </div>
-        </a>
-
-        <a class="NextArticleCadre">
-          <img
-            class="ImgNextPicture"
-            id="Bulle3"
-            src="../assets/Pictures/Article/c7f5c6f3490fd4947f9ee4b407eda8c0.jpg"
-            alt="article 3"
-          />
-          <div class="CarerDescription" id="CadreBulle3"></div>
-          <div class="BulleInfo" id="BulleInfo3">
-            Description de l'article 3
-          </div>
-        </a>
-      </div>
-    </div>
-
-    <div class="Mozaik">
-
-      <div class="MozaikWideCompo">
-        <img
-          class="ImageMozaikWide"
-          src="../assets/Pictures/Article/95ee75233d46fbe0949783990098227c.jpg"
-        />
-        <div class="LabelNextArticle"> <h5 >Les grands champion du tennis</h5></div>
-      </div>
-
-      <img
-        class="ImageMozaik"
-        src="../assets/Pictures/Article/662315dfc76d706ae9f669f493096ddc.jpg"
-      />
-      <!--Les image devront être ceux des 3 derniers article-->
-      <img
-        class="ImageMozaik"
-        src="../assets/Pictures/Article/6a9e0a6d535386bad028addf59b3c775.jpg "
-      />
-    </div>
+  <div class="Mozaik">
+    <Carrousel></Carrousel>
   </div>
 </template>
 
@@ -308,106 +191,17 @@ h5 {
   gap: 30px;
 }
 
-.Section {
-  display: flex;
-  margin-top: 35px;
-
-  flex-direction: row;
-}
-
-.Prochainement {
-  height: 277px;
-  width: 50%;
-  background-color: #be2625;
-}
-
-.ProchainementHover {
-  display: none;
-}
-
 .Mozaik {
   height: 277px;
-  width: 50%;
+  width: 100%;
+  display: flex;
+}
+
+bulle-container {
   display: flex;
   justify-content: center;
-  flex-direction: row;
-}
-
-.ImageMozaik {
-  width: 25%;
-}
-
-.ImageMozaikWide {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  z-index: 1;
-}
-
-.NextArticlePicture {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.ImgNextPicture {
-  position: relative;
-  width: 130px;
-  height: 122px;
-  border-radius: 100%;
-  z-index: 2;
-  /* La bulle doit être au-dessus */
-}
-
-.CarerDescription {
-  display: none;
-  /* Caché par défaut */
-  position: absolute;
-  /* Assure un bon placement */
-  width: 400px;
-  height: 175px;
-  background-color: #2f2f2f;
-
-  overflow: hidden;
-
-  padding: 10px;
-  /* Pour éviter que la bulle touche directement le bord */
-}
-
-.BulleInfo {
-  display: none;
-}
-
-.NextArticleCadre {
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
   align-items: center;
-
-}
-
-.MozaikWideCompo{
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end ;
+  height: 200px;
   position: relative;
-
-
-
-}
-
-.LabelNextArticle{
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content:flex-start;
-  height: 18%;
-  width: 100%;
-  background-color: #2F2F2FE5;
-  opacity: 90%;
-  position: absolute;
-  right: 0;
-  z-index: 2;
 }
 </style>
