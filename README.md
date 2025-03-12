@@ -16,7 +16,7 @@ npm install
 
 ## Développement
 
-Pour démarrer le serveur de développement sur `http://localhost:3000` :
+Pour démarrer le serveur de développement sur `http://localhost:8080` :
 
 ```bash
 npm run dev
@@ -33,7 +33,7 @@ docker-compose -f docker-compose.yml up --build app_dev
 Cela va :
 - Construire l'image Docker définie dans `Dockerfile.dev`
 - Monter le répertoire de travail local dans le conteneur
-- Exposer les ports 3000 et 24678
+- Exposer les ports 8080 et 24678
 
 Pour prévisualiser localement la build de production :
 
@@ -54,7 +54,7 @@ docker-compose up --build app
 
 Cela va :
 - Construire l'image Docker définie dans `Dockerfile`
-- Exposer le port 3000
+- Exposer le port 8080
 ___
 
 ## Documentation
