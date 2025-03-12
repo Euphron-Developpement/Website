@@ -11,15 +11,22 @@ const confirmPassword = ref('');
 
 const router = useRouter();
 
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const isFormValid = computed(() => {
-    return prenom.value && nom.value && email.value && password.value && confirmPassword.value;
+    return prenom.value && nom.value && email.value && emailPattern.test(email.value) && password.value && confirmPassword.value;
+});
+
+const emailError = computed(() => {
+    if (!email.value) return '';
+    return emailPattern.test(email.value) ? '' : 'Adresse mail invalide.';
 });
 
 const handleSubmit = () => {
     if (isFormValid.value) {
         router.push('/');
     } else {
-        alert('Veuillez remplir tous les champs.');
+        alert('Veuillez remplir tous les champs correctement.');
     }
 };
 </script>
@@ -41,6 +48,7 @@ const handleSubmit = () => {
             <div class="form-group">
                 <label for="email">Adresse mail</label>
                 <input v-model="email" type="email" id="email"/>
+                <span class="error-message">{{ emailError }}</span>
             </div>
 
             <div class="form-group">
