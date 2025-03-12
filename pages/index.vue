@@ -9,15 +9,12 @@ import BodyHome from '~/components/BodyHome.vue';
 
 <template>
 <body>
-  <NavBar>
-
-</NavBar>
-
-<BodyHome>
-  
-</BodyHome>
 
 
+
+
+
+<BodyHome />
   
 
 </body>
@@ -42,6 +39,7 @@ body{
   display: flex;
   justify-content: center;
   flex-direction: column;
+
 }
 
 
