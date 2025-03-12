@@ -1,6 +1,7 @@
 <template>
   <div class="contentNav">
     <nav>
+
       <div :class="{ NavBtn: true, active: navOpen }">
         <div class="close_nav" @click="toggleNav()">Fermer la navBar</div>
         <div class="ButtonNav">
@@ -87,10 +88,12 @@
       </div>
     </nav>
   </div>
+
 </template>
 
 <script setup>
 import { ref } from 'vue';
+
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
@@ -136,6 +139,7 @@ nav {
   margin-top: 65px;
   align-items: center;
 }
+
 
 .ButtonNav {
   margin-left: 17px;
@@ -242,3 +246,4 @@ nav {
   }
 }
 </style>
+
