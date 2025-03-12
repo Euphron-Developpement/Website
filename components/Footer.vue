@@ -230,5 +230,28 @@ a {
   }
 }
 
+@media (max-width: 400px) {
+  .footer_content {
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .footer_column {
+    min-width: 100%;
+    text-align: left;
+  }
+
+  p {
+    padding-left: 2rem;
+    text-align: left;
+  }
+
+  a {
+    padding-left: 2.5rem;
+    text-align: left;
+  }
+}
+
+
 </style>
 <script setup lang="ts"></script>
