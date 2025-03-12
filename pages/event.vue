@@ -44,8 +44,8 @@
                 <button @click="showModal = false" type="button" class="close_modal_btn">X</button>
                 <div class="modal_content">
                     <img src="../assets/images/4d4426fe0f6db745f32b35393cd7840c.jpg" class="modal_img" />
-                    <div class="modal_bottom">
-                        <div class="bottom_text">
+                    <div class="reservation_modal">
+                        <div class="reservation_text">
                             <p>Préparez-vous à monter sur le ring !</p>
                             <ul>
                                 <li>Rencontres avec des champions.</li>
@@ -54,23 +54,36 @@
                                 <li>Une soirée conviviale pour partager l'amour du noble art.</li>
                             </ul>
                         </div>
-                        <div class="bottom_form">
+                        <div class="reservation_form">
                             <div v-for="visitor in visitors" :key="visitor.id" class="visitor">
-                                <div>
+                                <div class="visitor_date">
                                     <p>12/03/2025</p>
                                 </div>
-                                <div>
-                                    <p>Sélectionner</p>
+                                <div @click="toggleDropdown(visitor.id)" class="visitor_age">
+                                    <p>{{ visitor.selectedOption ? visitor.selectedOption : "Selectionner" }}</p>
+                                    <div v-if="visitor.isDropdownVisible" class="dropdown_menu">
+                                        <select v-model="visitor.selectedOption" @change="toggleDropdown(visitor.id)" @click.stop required>
+                                            <option value="- 16 ans">- 16 ans</option>
+                                            <option value="18 - 30 ans">18 - 30 ans</option>
+                                            <option value="30 ans +">30 ans +</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div style="display: flex; justify-content: space-around;">
-                                    <button @click="changeVisitorCount(false)" type="button">&#60;</button>
-                                    <p>{{ currentVisitorCount }}</p>
-                                    <button @click="changeVisitorCount(true)" type="button">&#62;</button>
+                                <div class="visitor_count">
+                                    <button @click="changeVisitorCount(visitor.id, false)" type="button">&#60;</button>
+                                    <p>{{ visitor.count }}</p>
+                                    <button @click="changeVisitorCount(visitor.id, true)" type="button">&#62;</button>
                                 </div>
                             </div>
                             <button @click="addVisitor" type="button" class="add_visitor">+</button>
                             <div style="width: 100%; display: flex; justify-content: end;">
-                                <button type="button" class="confirm_visitor">RESERVER</button>
+                                <button 
+                                    @click="reserve" 
+                                    type="button" 
+                                    :class="canReserve ? 'confirm_visitor_red' : 'confirm_visitor_black'"
+                                >
+                                    RESERVER
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -84,40 +97,78 @@
 
 <!-- Script -->
 <script setup lang="ts">
-    import { ref } from "vue";
+    import { ref, watch } from "vue";
 
     // Toggle pour savoir si la modal est ouverte ou fermée
     const showModal = ref(false);
+
+    // Tableau permettant l'affichage d'es utilisateurs dans la reservation
+    const visitors = ref<Visitor[]>([]);
+
+    // Vérifie si un visiteur majeur est présent
+    const canReserve = ref(false);
 
     // Structure du visiteur
     interface Visitor {
         id: number;
         name: string;
+        selectedOption: string | null;
+        isDropdownVisible: boolean;
+        count: number;
     }
-
-    // Tableau permettant l'affichage d'es utilisateurs dans la reservation
-    const visitors = ref<Visitor[]>([]);
-
-    // Nombre de visiteurs ajouté
-    const currentVisitorCount = ref(0);
 
     // Ajout des visiteurs dans le tableau
     const addVisitor = () => {
-        visitors.value.push({ id: visitors.value.length + 1, name: `Visiteur ${visitors.value.length + 1}` });
-        currentVisitorCount.value = visitors.value.length;
+        visitors.value.push({ 
+            id: visitors.value.length + 1, 
+            name: `Visiteur ${visitors.value.length + 1}`,
+            selectedOption: null,
+            isDropdownVisible: false,
+            count: 1 
+        });
+        console.log(visitors)
     }
 
-    // Incrémentation du nombre de visiteurs (avec < ou >)
-    const changeVisitorCount = (increment: boolean) => {
-        if (increment) {
-            currentVisitorCount.value += 1;
-        } else {
-            if (currentVisitorCount.value == 0) {
-                currentVisitorCount.value = 0; 
-            } else {
-                currentVisitorCount.value -= 1;
+    // Ajout d'un visiteur par l'utilisateur
+    const changeVisitorCount = (visitorId: number, increment: boolean) => {
+        const visitor = visitors.value.find(v => v.id === visitorId);
+        if (visitor) {
+            if (increment) {
+                visitor.count += 1;
+            } else if (visitor.count > 0) {
+                visitor.count -= 1;
             }
         }
+    };
+
+    // Fonction pour afficher ou masquer le menu déroulant
+    const toggleDropdown = (visitorId: number) => {
+        const visitor = visitors.value.find(v => v.id === visitorId);
+        if (visitor) {
+            visitor.isDropdownVisible = !visitor.isDropdownVisible;
+        }
+    };
+
+    // Vérification si il y a au moin un visiteur majeur
+    const adultVerification = () => {
+        canReserve.value = visitors.value.some(visitor => 
+            (visitor.selectedOption === "18 - 30 ans" || visitor.selectedOption === "30 ans +") && visitor.count > 0
+        );
+    }
+
+    // Vérification chaque fois qu'un visiteur est ajouté ou que la sélection change
+    watch(visitors.value, () => {
+        adultVerification();
+    });
+
+    // Fonction du bouton reserver
+    const reserve = () => {
+    if (canReserve.value) {
+        alert("Réservation effectuée");
+        // Logique de réservation ici
+    } else {
+        alert("Impossible d'effectuer la réservation.\nAu moin l'un d'entre vous doit etre majeur.");
+    }
     };
 
     // Empêche le scroll du body quand la modale est ouverte
@@ -135,6 +186,10 @@
 <!-- Style CSS -->
  <style>
  /* Empeche le scroll dans la page quand la modal est ouverte */
+ * {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Montserrat, sans-serif;
 }
@@ -237,18 +292,18 @@ body.modal_open {
     object-fit: contain;
 }
 
-.modal_bottom {
+.reservation_modal {
     width: 90%;
     display: flex;
     flex-direction: row;
     margin: 20px;
 }
 
-.bottom_text {
+.reservation_text {
     width: 50%;
 }
 
-.bottom_form {
+.reservation_form {
     width: 50%;
     height: 100%;
     display: flex;
@@ -275,10 +330,50 @@ body.modal_open {
     justify-content: space-between;
 }
 
-.visitor div {
+.visitor_date, .visitor_age, .visitor_count {
     width: 33.2%;
     background-color: #2f2f2f;
     text-align: center;
+    position: relative;
+}
+
+.visitor_age {
+    cursor: pointer;
+}
+
+.visitor_count {
+    display: flex;
+    justify-content: space-around;
+}
+
+.dropdown_menu {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    background-color: #2f2f2f;
+    color: #F8FAEC;
+    padding: 5px;
+    z-index: 100;
+}
+
+.dropdown_menu select {
+    background-color: #2f2f2f;
+    color: #F8FAEC;
+    border: none;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.select-option {
+    background-color: #2f2f2f;
+    color: #F8FAEC;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.select-option:focus {
+    outline: none;
 }
 
 .visitor button {
@@ -289,13 +384,21 @@ body.modal_open {
     font-size: 26px;
 }
 
-.confirm_visitor {
+.confirm_visitor_red, .confirm_visitor_black {
     width: 40%;
     height: 30px;
-    background-color: #2f2f2f;
     border: none;
     font-size: 16px;
     color: #F8FAEC;
+    cursor: pointer;
+}
+
+.confirm_visitor_red {
+    background-color: #BE2625;
+}
+
+.confirm_visitor_black {
+    background-color: #2f2f2f;
 }
 
 .close_modal_btn {
