@@ -3,10 +3,6 @@ import "~/assets/css/login.css";
 
 const email = ref('');
 const password = ref('');
-const handleSubmit = () => {
-  console.log('Email:', email.value);
-  console.log('Password:', password.value);
-};
 
 
 </script>
