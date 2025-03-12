@@ -59,6 +59,7 @@
       </defs>
     </svg>
     <div class="footer_content">
+      <div class="footer_column">
       <div class="footer_part">
         <p>Accueil</p>
       </div>
@@ -78,10 +79,13 @@
         <a>Sport Mainstream</a>
         <a>Sport inconnu</a>
       </div>
-
-      <div class="footer_part">
-        <p>Contact</p>
-        <a>euphronydays@gmail.com</a>
+    </div>
+    <div class="footer_column">
+      <div>
+        <div class="footer_part">
+          <p>Contact</p>
+          <a>euphronydays@gmail.com</a>
+        </div>
       </div>
 
       <div>
@@ -128,15 +132,18 @@
         </div>
       </div>
     </div>
+    </div>
   </footer>
 </template>
 <style scoped>
+@import url('../assets/css/variables.css');
+
 footer {
-  font-family: Montserrat, sans-serif;
+  font-family: var(--font-primary);
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #f9faec;
+  color: #F8FAEC;
   background-color: #2f2f2f;
   padding: 4rem 0;
   gap: 2rem;
@@ -145,6 +152,13 @@ footer {
 p {
   font-size: 1.5rem;
   font-weight: bold;
+  color: #F8FAEC;
+}
+
+a {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #F8FAEC;
 }
 
 .footer_part {
@@ -172,5 +186,49 @@ p {
   width: 40%;
   height: 100%;
 }
+
+@media (max-width: 768px) {
+  .footer_logo {
+    width: 60%;
+  }
+
+  .footer_content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .footer_column {
+    flex: 1;
+    min-width: 45%;
+  }
+
+  .footer_part {
+    gap: 0rem;
+  }
+
+  p {
+    font-size: 1rem;
+    padding-left: 2rem;
+  }
+
+  a {
+    font-size: 0.6rem;
+    padding-left: 2.5rem;
+    letter-spacing: 0.1rem;
+    padding-bottom: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    display: block;
+  }
+
+  .footer_social--icons svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
 </style>
 <script setup lang="ts"></script>
