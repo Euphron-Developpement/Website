@@ -150,7 +150,6 @@ const isHovered = ref([false, false, false]);
   background-color: var(--primary-red);
 }
 .block_card:nth-child(1) .content {
-  background-color: var(--primary-red);
   color: var(--primary-white);
 }
 .block_card:nth-child(1) .logo {
@@ -168,7 +167,7 @@ const isHovered = ref([false, false, false]);
 }
 .block_card:nth-child(1).ishover p {
   opacity: 1;
-  transform: translateX(50%);
+  transform: translateX(35%);
 }
 .block_card:nth-child(2) {
   display: flex;
@@ -186,6 +185,7 @@ const isHovered = ref([false, false, false]);
 }
 .block_card:nth-child(2) .logo {
   z-index: 6;
+  height: 250px;
   background-image: url('assets/icons/nos-partenaires.svg');
 }
 .block_card:nth-child(2) .left-expander,
@@ -243,7 +243,7 @@ const isHovered = ref([false, false, false]);
   left: 10px;
   margin: 0;
   color: var(--primary-black);
-  z-index: 6;
+  z-index: 1 !important;
   width: 170%;
 }
 .block_card:nth-child(3) p {
@@ -254,7 +254,6 @@ const isHovered = ref([false, false, false]);
 }
 .block_card:nth-child(3) .content {
   background-color: var(--primary-white);
-  color: var(--primary-white);
 }
 .block_card:nth-child(3) .logo {
   background-position: right;
@@ -277,5 +276,6 @@ const isHovered = ref([false, false, false]);
 }
 .block_card:nth-child(3).ishover h2 {
   transform: translateX(-100%);
+  z-index: -2 !important;
 }
 </style>
