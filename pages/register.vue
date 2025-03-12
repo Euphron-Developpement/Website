@@ -63,7 +63,7 @@ const handleSubmit = () => {
 
             <button type="submit" class="submit-btn" :class="{ 'active-btn': isFormValid }">S'inscrire</button>
             <p class="already-account">
-                <a href="#">J'ai déjà un compte</a>
+                <a href="/login">J'ai déjà un compte</a>
             </p>
         </form>
     </div>
