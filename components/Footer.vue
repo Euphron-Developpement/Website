@@ -224,9 +224,17 @@ a {
     display: block;
   }
 
+
+  .footer_social--icons {
+    display: flex;
+    justify-content: start;
+    gap: 0rem;
+  }
+
   .footer_social--icons svg {
     width: 28px;
     height: 28px;
+    padding-left: 2.5rem;
   }
 }
 
