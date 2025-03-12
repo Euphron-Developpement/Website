@@ -133,7 +133,6 @@ nav {
 .contentNav {
   display: flex;
   justify-content: center;
-  margin-top: 65px;
   align-items: center;
 }
 
