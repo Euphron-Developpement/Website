@@ -14,7 +14,7 @@
           type="text"
           id="firstname"
           name="firstname"
-          placeholder="Prenom"
+          placeholder="Prénom"
           required
         />
       </div>
@@ -47,11 +47,13 @@
 h2 {
   font-family: 'Montserrat', sans-serif;
   font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
   display: block;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid #000;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
 }
 @media (max-width: 768px) {
   h2 {
@@ -97,6 +99,7 @@ textarea {
 input::placeholder {
   bottom: 10px;
   left: 10px;
+  letter-spacing: 0.1rem;
 }
 textarea::placeholder {
   top: 20px;
@@ -106,11 +109,12 @@ form {
   min-width: 310px;
   width: 50%;
   display: flex;
-  gap: 2rem;
+  gap: 3rem;
   flex-direction: column;
   align-items: center;
   margin-bottom: 2rem;
 }
+
 form div {
   display: flex;
   gap: 1rem;
@@ -125,6 +129,7 @@ textarea {
   width: 80vw;
   min-height: 300px;
   height: auto;
+  margin-top: 3rem;
 }
 button {
   background-color: #2f2f2f;
