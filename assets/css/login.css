@@ -1,0 +1,113 @@
+@import url('https://fonts.cdnfonts.com/css/druk-text-wide-trial');
+
+body {
+  background-color: #F8FAEC;
+  font-family: 'Druk Text Wide Trial', sans-serif;
+}
+
+.form-container {
+  max-width: 400px;
+  /* max-height: 900px; */
+  margin: auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.form-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.form-group{
+position: relative;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 100%;
+  margin-bottom: 5px;
+}
+
+input {
+  /* width: 100%; */
+  padding: 12px 12px 12px 5px; 
+  border: 1.5px solid #000;
+  background: none;
+  font-size: 14px;
+  width: -webkit-fill-available;
+}
+
+.submit-btn {
+  width: 50%;
+  background-color: #000;
+  color: #fff;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #BE2625;
+}
+
+/* .form-group::after { . <= tirets estéthiques à l'interieur des cases 
+  content: "";
+  position: absolute;
+  bottom: 12px;
+  left: 10%;
+  width: 80%; 
+  height: 1px;
+  background-color: #000;
+} */
+
+@media (max-width: 768px) {
+  .form-container {
+    padding: 20px;
+  }
+
+  .header-container {
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-container {
+    padding: 10px;
+  }
+
+  .header-container {
+    margin-bottom: 15px;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+}
