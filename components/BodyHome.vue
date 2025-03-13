@@ -112,7 +112,7 @@ onMounted(() => {});
   </div>
 
   <div class="Mozaik">
-    <Carrousel></Carrousel>
+    <Carrousel style="margin-top: 15px; z-index: 0"></Carrousel>
   </div>
 </template>
 
@@ -191,8 +191,19 @@ h5 {
   gap: 30px;
 }
 
+
+@media (max-width: 768px) {
+  .LogoReseau {
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+  }
+
+}
+
 .Mozaik {
-  height: 277px;
+  height: 100%;
   width: 100%;
   display: flex;
 }
