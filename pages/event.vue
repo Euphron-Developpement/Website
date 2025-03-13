@@ -117,15 +117,15 @@
                                 <form class="visitor_data_form">
                                     <div>
                                         <label for="prenom">Prénom</label>
-                                        <input name="prenom" type="text" placeholder="________________________"/>
+                                        <input v-model="visitor.prenom" name="prenom" type="text" placeholder="________________________" required/>
                                     </div>
                                     <div>
                                         <label for="nom">Nom</label>
-                                        <input name="nom" type="text" placeholder="________________________"/>
+                                        <input v-model="visitor.nom" name="nom" type="text" placeholder="________________________" required/>
                                     </div>
                                     <div>
                                         <label for="age">Tranche d'age</label>
-                                        <input name="age" type="text" placeholder="________________________"/>
+                                        <input v-model="visitor.age" name="age" type="text" placeholder="________________________" required/>
                                     </div>
                                     <label>Sitation d'handicap</label>
                                     <div class="handicap_radio">
@@ -155,9 +155,9 @@
                         </div>
                         <div style="width: 100%; display: flex; justify-content: end;">
                             <button 
-                                @click="reserve" 
-                                type="button" 
-                                :class="canReserve ? 'confirm_commande_red' : 'confirm_commande_black'"
+                                @click="checkAllInputs" 
+                                type="submit" 
+                                class="confirm_commande_red"
                             >
                                 Commander
                             </button>
@@ -195,6 +195,9 @@
     // Variable qui stocke l'icône sélectionnée
     const selectedIndexes = ref<string[]>([]);
 
+    // Booleen qui vérifie que tout les champs du formulaire sont remplis
+    const formError = ref<boolean>(false);
+
             /* ------ Déclaration des structures ------ */
     // Structure du visiteur
     interface Visitor {
@@ -203,6 +206,9 @@
         selectedOption: string | null;
         isDropdownVisible: boolean;
         count: number;
+        prenom: string;
+        nom: string;
+        age: string; // String car type text entré dans le formulaire
         selectedIcon: string | null;
     }
 
@@ -215,6 +221,9 @@
             selectedOption: null,
             isDropdownVisible: false,
             count: 1,
+            prenom: "",
+            nom: "",
+            age: "",
             selectedIcon: null
         });
         console.log(visitors)
@@ -271,8 +280,25 @@
     }
     };
 
+    // Selection des icones pour les visiteurs
     const toggleSelection = (index: number, type: string) => {
         selectedIndexes.value[index] = selectedIndexes.value[index] === type ? '' : type;
+    };
+
+    // Méthode pour vérifier si tous les champs sont remplis
+    const checkAllInputs = () => {
+    // Vérifie si tous les champs sont remplis
+    const allFieldsFilled = visitors.value.every(visitor => 
+        visitor.prenom.trim() && visitor.nom.trim() && visitor.age.trim()
+    );
+
+    if (allFieldsFilled) {
+        formError.value = false;
+        alert('Le formulaire est soumis avec succès !');
+    } else {
+        formError.value = true;
+        alert('Veuillez remplir tous les champs');
+    }
     };
 
     // Toggle contenu de la modale (reservation / commande)
