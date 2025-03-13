@@ -3,41 +3,12 @@
     <h2>QUELQUE CHOSE À NOUS DIRE ?</h2>
     <form>
       <div>
-        <input
-          type="text"
-          id="lastname"
-          name="lastname"
-          placeholder="Nom"
-          required
-        />
-        <input
-          type="text"
-          id="firstname"
-          name="firstname"
-          placeholder="Prénom"
-          required
-        />
+        <input type="text" id="lastname" name="lastname" placeholder="Nom" required />
+        <input type="text" id="firstname" name="firstname" placeholder="Prénom" required />
       </div>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="Adresse email"
-        required
-      />
-      <input
-        type="tel"
-        id="phone"
-        name="phone"
-        placeholder="Numéro de téléphone"
-        required
-      />
-      <textarea
-        id="message"
-        name="message"
-        placeholder="Message"
-        required
-      ></textarea>
+      <input type="email" id="email" name="email" placeholder="Adresse email" required />
+      <input type="tel" id="phone" name="phone" placeholder="Numéro de téléphone" required />
+      <textarea id="message" name="message" placeholder="Message" required></textarea>
       <button type="submit">ENVOYER</button>
     </form>
   </div>
@@ -54,7 +25,9 @@ h2 {
   border-bottom: 2px solid #000;
   letter-spacing: 0.1rem;
   font-weight: bold;
+  text-align: center;
 }
+
 @media (max-width: 768px) {
   h2 {
     font-size: 1.5rem;
@@ -63,21 +36,24 @@ h2 {
     font-size: 1.2rem !important;
   }
 }
+
 @media (max-width: 480px) {
   h2 {
     font-size: 1.2rem;
   }
 }
+
 .container {
   display: flex;
   align-items: center;
   flex-direction: column;
   min-height: 80vh;
+  padding: 2rem;
 }
+
 input,
 textarea {
   display: block;
-  position: relative;
   background-color: transparent;
   border: 1.5px solid #000;
   height: 30px;
@@ -90,21 +66,25 @@ textarea {
   padding: 10px;
   line-height: 1.5;
 }
+
 ::placeholder {
   color: #000;
   font-size: 20px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 200;
 }
+
 input::placeholder {
   bottom: 10px;
   left: 10px;
   letter-spacing: 0.1rem;
 }
+
 textarea::placeholder {
   top: 20px;
   left: 10px;
 }
+
 form {
   min-width: 310px;
   width: 50%;
@@ -121,9 +101,11 @@ form div {
   width: 100%;
   justify-content: space-between;
 }
+
 form div input {
   width: 50%;
 }
+
 textarea {
   min-width: 310px;
   width: 80vw;
@@ -131,6 +113,7 @@ textarea {
   height: auto;
   margin-top: 3rem;
 }
+
 button {
   background-color: #2f2f2f;
   color: #f8faec;
@@ -141,7 +124,28 @@ button {
   cursor: pointer;
   transition: all 0.1s ease-in-out;
 }
+
 button:hover {
   background-color: #be2625;
+}
+
+@media (max-width: 768px) {
+  form {
+    width: 90%;
+  }
+  form div {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  form div input {
+    width: 100%;
+  }
+  textarea {
+    width: 100%;
+    min-height: 200px;
+  }
+  button {
+    font-size: 1.5rem;
+  }
 }
 </style>
