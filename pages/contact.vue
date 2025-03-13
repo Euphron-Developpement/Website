@@ -2,7 +2,7 @@
   <div class="container">
     <h2>QUELQUE CHOSE À NOUS DIRE ?</h2>
     <form>
-      <div>
+      <div class="input-group">
         <input
           type="text"
           id="lastname"
@@ -44,104 +44,106 @@
 </template>
 
 <style scoped>
-h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2rem;
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-  display: block;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #000;
-  letter-spacing: 0.1rem;
-  font-weight: bold;
-}
-@media (max-width: 768px) {
-  h2 {
-    font-size: 1.5rem;
-  }
-  button {
-    font-size: 1.2rem !important;
-  }
-}
-@media (max-width: 480px) {
-  h2 {
-    font-size: 1.2rem;
-  }
-}
+/* Conteneur principal */
 .container {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   min-height: 80vh;
-}
-input,
-textarea {
-  display: block;
-  position: relative;
-  background-color: transparent;
-  border: 1.5px solid #000;
-  height: 30px;
-  max-height: 50px;
-  width: -webkit-fill-available;
-  color: #000;
-  font-size: 20px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
-  padding: 10px;
-  line-height: 1.5;
-}
-::placeholder {
-  color: #000;
-  font-size: 20px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
-}
-input::placeholder {
-  bottom: 10px;
-  left: 10px;
-  letter-spacing: 0.1rem;
-}
-textarea::placeholder {
-  top: 20px;
-  left: 10px;
-}
-form {
-  min-width: 310px;
-  width: 50%;
-  display: flex;
-  gap: 3rem;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 2rem;
+  padding: 1rem;
+  width: 100%;
 }
 
-form div {
+/* Titre */
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #000;
+  width: 90%;
+  max-width: 500px;
+}
+
+/* Formulaire */
+form {
+  width: 90%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Groupe d'inputs (Nom & Prénom) */
+.input-group {
   display: flex;
   gap: 1rem;
   width: 100%;
-  justify-content: space-between;
 }
-form div input {
-  width: 50%;
+
+.input-group input {
+  width: 100%;
 }
+
+/* Inputs et textarea */
+input,
 textarea {
-  min-width: 310px;
-  width: 80vw;
-  min-height: 300px;
-  height: auto;
-  margin-top: 3rem;
+  width: 100%;
+  background-color: transparent;
+  border: 1.5px solid #000;
+  padding: 10px;
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
 }
+
+textarea {
+  min-height: 200px;
+  resize: vertical;
+}
+
+/* Bouton */
 button {
   background-color: #2f2f2f;
   color: #f8faec;
   padding: 1rem;
   font-weight: bold;
-  font-size: 1.7rem;
+  font-size: 1.2rem;
   border: none;
   cursor: pointer;
-  transition: all 0.1s ease-in-out;
+  width: 100%;
+  max-width: 200px;
+  transition: background-color 0.2s ease-in-out;
 }
+
 button:hover {
   background-color: #be2625;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .input-group {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  form {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 0.8rem;
+    max-width: 100%;
+  }
 }
 </style>
