@@ -171,9 +171,64 @@ a {
 
 .footer_content {
   display: flex;
-  justify-content: space-around;
   width: 90%;
-  flex-wrap: wrap;
+}
+
+.footer_column {
+  display: flex;
+  flex: 1;
+}
+
+
+@media (min-width: 1420px) {
+  .footer_content {
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+  }
+  
+  .footer_column {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+@media (max-width: 1419px) and (min-width: 1024px) {
+  .footer_part {
+    min-width: 150px;
+    margin-bottom: 2rem;
+  }
+  
+  a {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 769px) {
+  .footer_content {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .footer_column {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .footer_part {
+    min-width: 150px;
+    margin-bottom: 2rem;
+  }
+
+  a {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
 }
 
 .footer_social--icons {
@@ -194,6 +249,7 @@ a {
 
   .footer_content {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
@@ -202,6 +258,7 @@ a {
   .footer_column {
     flex: 1;
     min-width: 45%;
+    flex-direction: column;
   }
 
   .footer_part {
@@ -223,7 +280,6 @@ a {
     white-space: normal;
     display: block;
   }
-
 
   .footer_social--icons {
     display: flex;
@@ -259,7 +315,5 @@ a {
     text-align: left;
   }
 }
-
-
 </style>
 <script setup lang="ts"></script>
