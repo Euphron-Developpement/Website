@@ -7,9 +7,7 @@ export default defineNuxtConfig({
             enabled: true
         }
     },
-    modules: [
-        '@nuxt/test-utils/module'
-    ],
+    modules: ['@nuxt/test-utils/module', '@nuxtjs/tailwindcss'],
     css: [
         '~/assets/css/main.css',
         '~/assets/css/variables.css'
