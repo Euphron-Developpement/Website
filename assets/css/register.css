@@ -1,0 +1,96 @@
+@import url('variables.css');
+
+.form-container {
+    padding: 40px;
+    max-width: 500px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Druk Text Wide Trial', sans-serif;
+    color: var(--primary-black);
+    font-size: 32px;
+    margin-bottom: 40px;
+    white-space: nowrap;
+}
+
+.form-group {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+label {
+    font-family: var(--font-primary);
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--primary-black);
+    font-size: 20px;
+    background-color: var(--primary-white);
+}
+
+.submit-btn {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--primary-black);
+    color: #ffffff;
+    padding: 10px 80px;
+    border: none;
+    cursor: not-allowed;
+    transition: background-color 0.3s, opacity 0.3s;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.submit-btn.active-btn {
+    background-color: var(--primary-red);
+    cursor: pointer;
+}
+
+.already-account {
+    margin-top: 15px;
+}
+
+a {
+    font-family: var(--font-primary);
+    font-size: 18px;
+    color: var(--primary-black);
+}
+
+.error-message {
+    font-family: var(--font-primary);
+    font-size: 16px;
+    color: var(--primary-red);
+    margin-top: 10px;
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .form-container {
+        padding: 20px;
+        margin: 20px;
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    input {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .submit-btn {
+        padding: 10px 40px;
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+}

@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import NavBar from './components/NavBar.vue';
-</script>
-
 <template>
   <body>
     <div>
@@ -20,5 +16,6 @@ import NavBar from './components/NavBar.vue';
 body {
   overflow-x: hidden;
   background-color: #f8faec;
+  overflow-x: hidden;
 }
 </style>
