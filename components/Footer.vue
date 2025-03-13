@@ -297,22 +297,51 @@ a {
 @media (max-width: 400px) {
   .footer_content {
     flex-direction: column;
-    align-items: left;
+    align-items: center;
+    text-align: center;
+    width: 90%;
   }
 
   .footer_column {
     min-width: 100%;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer_part {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: none;
   }
 
   p {
-    padding-left: 2rem;
-    text-align: left;
+    font-size: 1rem;
+    padding: 0;
+    margin-bottom: 0.5rem;
+    text-align: center;
   }
 
   a {
-    padding-left: 2.5rem;
-    text-align: left;
+    font-size: 0.6rem;
+    padding: 0;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1rem;
+    text-align: center;
+  }
+
+  .footer_social--icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .footer_social--icons svg {
+    width: 28px;
+    height: 28px;
+    padding: 0;
   }
 }
 </style>
