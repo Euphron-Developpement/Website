@@ -200,6 +200,42 @@ h5 {
     gap: 30px;
   }
 
+
+  h3 {
+    color: #be2625;
+    font-family: "Stevie Sans W00 Regular";
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29.3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+  }
+
+
+  h4 {
+    font-family: "Stevie Sans W00 Regular";
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24.42px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .LogoBody {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
 }
 
 .Mozaik {
@@ -215,4 +251,6 @@ bulle-container {
   height: 200px;
   position: relative;
 }
+
+
 </style>
