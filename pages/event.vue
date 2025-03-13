@@ -1,4 +1,4 @@
-<!-- Contenu HTML -->
+                                            <!-- ****** Contenu HTML ****** -->
 <template>
     <div class="main_content">
         <h1 class="event_title">
@@ -8,7 +8,7 @@
         </h1>
         <div class="event_content">
             <div class="event_image">
-                <img src="../assets/images/4d4426fe0f6db745f32b35393cd7840c.jpg">
+                <img src="../assets/images/4d4426fe0f6db745f32b35393cd7840c.jpg" alt="Événement boxe">
                 <button @click="showModal = true" type="button" class="reservation_btn">Réservez votre place dès maintenant</button>
             </div>
             <div class="event_text">
@@ -43,8 +43,9 @@
             <div class="modal_size">
                 <button @click="showModal = false" type="button" class="close_modal_btn">X</button>
                 <div class="modal_content">
-                    <img src="../assets/images/4d4426fe0f6db745f32b35393cd7840c.jpg" class="modal_img" />
-                    <div class="reservation_modal">
+                    <img src="../assets/images/4d4426fe0f6db745f32b35393cd7840c.jpg" alt="Événement boxe" class="modal_img" />
+                    <!-- Partie reservation -->
+                    <div class="reservation_modal" v-show="isReservationVisible">
                         <div class="reservation_text">
                             <p>Préparez-vous à monter sur le ring !</p>
                             <ul>
@@ -54,8 +55,7 @@
                                 <li>Une soirée conviviale pour partager l'amour du noble art.</li>
                             </ul>
                         </div>
-                        <!-- Partie reservation -->
-                        <div class="reservation_form" v-show="isReservationVisible">
+                        <div class="reservation_form">
                             <div v-for="visitor in visitors" :key="visitor.id" class="visitor">
                                 <div class="visitor_date">
                                     <p>12/03/2025</p>
@@ -87,38 +87,80 @@
                                 </button>
                             </div>
                         </div>
-                        <!-- Partie Commande -->
-                        <div class="commande_form" v-show="isCommandeVisible">
-                            <div v-for="visitor in visitors" :key="visitor.id" class="visitor">
-                                <div class="visitor_date">
-                                    <p>12/03/2025</p>
+                    </div>
+                    <!-- Partie Commande -->
+                    <div class="commande_modal" v-show="isCommandeVisible">
+                        <div class="recap">
+                            <div class="recap_date">
+                                <p>12/03/2025</p>
+                            </div>
+                            <div v-for="visitor in visitors" :key="visitor.id" class="recap_visitor">
+                                <div class="recap_visitor_option">
+                                    <p>{{ visitor.selectedOption }}</p>
                                 </div>
-                                <div @click="toggleDropdown(visitor.id)" class="visitor_age">
-                                    <p>{{ visitor.selectedOption ? visitor.selectedOption : "Selectionner" }}</p>
-                                    <div v-if="visitor.isDropdownVisible" class="dropdown_menu">
-                                        <select v-model="visitor.selectedOption" @change="toggleDropdown(visitor.id)" @click.stop required>
-                                            <option value="- 16 ans">- 16 ans</option>
-                                            <option value="18 - 30 ans">18 - 30 ans</option>
-                                            <option value="30 ans +">30 ans +</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="visitor_count">
-                                    <button @click="changeVisitorCount(visitor.id, false)" type="button">&#60;</button>
+                                <div class="recap_visitor_count"> 
                                     <p>{{ visitor.count }}</p>
-                                    <button @click="changeVisitorCount(visitor.id, true)" type="button">&#62;</button>
                                 </div>
                             </div>
-                            <button @click="addVisitor" type="button" class="add_visitor">+</button>
-                            <div style="width: 100%; display: flex; justify-content: end;">
-                                <button 
-                                    @click="reserve" 
-                                    type="button" 
-                                    :class="canReserve ? 'confirm_visitor_red' : 'confirm_visitor_black'"
-                                >
-                                    Commander
-                                </button>
+                        </div>
+                        <div class="commande_text">
+                            <p><b>Informations supplementaires</b></p>
+                            <p>Ces informations nous permettrons de prévoir les aménagements nécessaires</p>
+                        </div>
+                        <div class="commande_form">
+                            <div 
+                                v-for="(visitor, index) in visitors.flatMap(v => Array(v.count).fill(v))"
+                                :key="index" 
+                                class="visitor_form_block"
+                            > <!-- Boucle sur le count de chaque visiteurs -->
+                                <p style="font-size: 12px; margin-left: 3px; margin: 0px;">Personne {{ index + 1 }}</p>
+                                <form class="visitor_data_form">
+                                    <div>
+                                        <label for="prenom">Prénom</label>
+                                        <input name="prenom" type="text" placeholder="________________________"/>
+                                    </div>
+                                    <div>
+                                        <label for="nom">Nom</label>
+                                        <input name="nom" type="text" placeholder="________________________"/>
+                                    </div>
+                                    <div>
+                                        <label for="age">Tranche d'age</label>
+                                        <input name="age" type="text" placeholder="________________________"/>
+                                    </div>
+                                    <label>Sitation d'handicap</label>
+                                    <div class="handicap_radio">
+                                        <!-- Handicap moteur -->
+                                        <div :class="['handicap_icon_container', { 'selected': selectedIndexes[index] === 'motor' }]" 
+                                        @click="toggleSelection(index, 'motor')">
+                                            <img src="../assets/icons/handicap.svg" class="handicap_icon" alt="Handicap moteur"/>
+                                        </div>
+                                        <!-- Handicap auditif -->
+                                        <div :class="['handicap_icon_container', { 'selected': selectedIndexes[index] === 'deaf' }]" 
+                                        @click="toggleSelection(index, 'deaf')">
+                                            <img src="../assets/icons/deaf.svg" class="handicap_icon" alt="Handicap auditif"/>
+                                        </div>
+                                        <!-- Handicap visuel -->
+                                        <div :class="['handicap_icon_container', { 'selected': selectedIndexes[index] === 'blind' }]" 
+                                        @click="toggleSelection(index, 'blind')">
+                                            <img src="../assets/icons/blind.svg" class="handicap_icon" alt="Handicap visuel"/>
+                                        </div>
+                                        <!-- Pas d'handicap -->
+                                        <div :class="['handicap_icon_container', { 'selected': selectedIndexes[index] === 'cross' }]" 
+                                        @click="toggleSelection(index, 'cross')">
+                                            <img src="../assets/icons/cross.svg" class="handicap_icon" alt="Pas d'handicap"/>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
+                        </div>
+                        <div style="width: 100%; display: flex; justify-content: end;">
+                            <button 
+                                @click="reserve" 
+                                type="button" 
+                                :class="canReserve ? 'confirm_commande_red' : 'confirm_commande_black'"
+                            >
+                                Commander
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -129,10 +171,11 @@
 </template>
 
 
-<!-- Script -->
+                                            <!-- ****** Script ****** -->
 <script setup lang="ts">
     import { ref, watch } from "vue";
 
+            /* ------ Déclaration des vairables ------ */
     // Toggle pour savoir si la modal est ouverte ou fermée
     const showModal = ref(false);
 
@@ -143,9 +186,16 @@
     const canReserve = ref(false);
 
     // Etat de visibilitée de la partie basse de la modale
-    const isReservationVisible = ref(true)
-    const isCommandeVisible = ref(false)
+    const isReservationVisible = ref(true);
+    const isCommandeVisible = ref(false);
 
+    // Nombre total de visiteurs
+    var totalVisitorsCount: number = 0;
+
+    // Variable qui stocke l'icône sélectionnée
+    const selectedIndexes = ref<string[]>([]);
+
+            /* ------ Déclaration des structures ------ */
     // Structure du visiteur
     interface Visitor {
         id: number;
@@ -153,8 +203,10 @@
         selectedOption: string | null;
         isDropdownVisible: boolean;
         count: number;
+        selectedIcon: string | null;
     }
 
+            /* ------ Fonctions / logique métier ------ */
     // Ajout des visiteurs dans le tableau
     const addVisitor = () => {
         visitors.value.push({ 
@@ -162,7 +214,8 @@
             name: `Visiteur ${visitors.value.length + 1}`,
             selectedOption: null,
             isDropdownVisible: false,
-            count: 1 
+            count: 1,
+            selectedIcon: null
         });
         console.log(visitors)
     }
@@ -199,14 +252,27 @@
         adultVerification();
     });
 
+    // Calcul du nombre total de visiteurs
+    const totalVisitorCalculator = () => {
+        visitors.value.forEach((visitor) => {
+            totalVisitorsCount = totalVisitorsCount += visitor.count;
+        })
+        return totalVisitorsCount;     
+    }
+
     // Fonction du bouton reserver
     const reserve = () => {
     if (canReserve.value) {
-        alert("Réservation effectuée");
+        alert("Réservation possible");
+        totalVisitorCalculator();
         changeModalForm();
     } else {
         alert("Impossible d'effectuer la réservation.\nAu moin l'un d'entre vous doit etre majeur.");
     }
+    };
+
+    const toggleSelection = (index: number, type: string) => {
+        selectedIndexes.value[index] = selectedIndexes.value[index] === type ? '' : type;
     };
 
     // Toggle contenu de la modale (reservation / commande)
@@ -227,7 +293,7 @@
 
 
 
-<!-- Style CSS -->
+                                            <!-- ****** Style CSS ****** -->
  <style>
  /* Empeche le scroll dans la page quand la modal est ouverte */
  * {
@@ -297,6 +363,7 @@ body.modal_open {
     font-size: calc(0.25rem + 1vw);
 }
 
+/* --- Fenetre modal --- */
 .modal {
     position: fixed;
     top: 0;
@@ -336,6 +403,7 @@ body.modal_open {
     object-fit: contain;
 }
 
+/* --- Partie reservation --- */
 .reservation_modal {
     width: 90%;
     display: flex;
@@ -347,7 +415,7 @@ body.modal_open {
     width: 50%;
 }
 
-.reservation_form, .commande_form {
+.reservation_form {
     width: 50%;
     height: 100%;
     display: flex;
@@ -436,6 +504,7 @@ body.modal_open {
     font-size: calc(0.2rem + 1vw);
     color: #F8FAEC;
     cursor: pointer;
+    font-family: Montserrat, sans-serif;
 }
 
 .confirm_visitor_red {
@@ -443,6 +512,161 @@ body.modal_open {
 }
 
 .confirm_visitor_black {
+    background-color: #2f2f2f;
+}
+
+/* --- Partie commande --- */
+.commande_modal {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    font-family: Montserrat, sans-serif;
+}
+
+.recap {
+    width: 80%;
+    height: 50px;
+    margin: 5px;
+    color: #F8FAEC;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    gap: 1px;
+    font-family: Montserrat, sans-serif;
+}
+
+.recap_date {
+    width: 25%;
+    height: 100%;
+    background-color: #2f2f2f;
+}
+
+.recap_visitor {
+    width: 50%;
+    height: 100%;
+    color: #F8FAEC;
+    display: flex;
+    gap: 1px;
+}
+
+.recap_visitor_option {
+    width: 70%;
+    height: 100%;
+    background-color: #2f2f2f;
+}
+
+.recap_visitor_count {
+    width: 30%;
+    height: 100%;
+    background-color: #2f2f2f;
+}
+
+.commande_text {
+    width: 90%;
+    font-family: Montserrat, sans-serif;
+    color: #2f2f2f;
+}
+
+.commande_text p {
+    margin: 2px 0px;
+}
+
+.commande_form {
+    width: 100%;
+    margin: 15px 0px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.visitor_form_block {
+    width: 240px;
+    height: 300px;
+    margin: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    font-family: Montserrat, sans-serif;
+}
+
+.visitor_data_form {
+    width: 100%;
+    margin-top: 0px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.visitor_data_form label, .visitor_data_form input {
+    margin-left: 2px;
+}
+
+.visitor_data_form label {
+    font-size: 16px;
+    font-weight: 750;
+    font-family: Montserrat, sans-serif;
+    color: #2f2f2f;
+}
+
+.visitor_data_form input {
+    background-color: transparent;
+    width: 90%;
+    height: 40px;
+    text-align: center;
+}
+
+.handicap_radio {
+    width: 90%;
+    height: 40px;
+    display: flex;
+}
+
+.handicap_radio div {
+    border: solid #2f2f2f 1px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selected {
+  background-color: #2f2f2f;
+}
+
+.selected img {
+    filter: invert(1);
+}
+
+.handicap_icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.handicap_icon:hover {
+    width: 35px;
+    height: 35px;
+}
+
+.confirm_commande_red, .confirm_commande_black {
+    width: 20%;
+    height: 30px;
+    margin-right: 10px;
+    border: none;
+    font-size: calc(0.2rem + 1vw);
+    color: #F8FAEC;
+    cursor: pointer;
+    font-family: Montserrat, sans-serif;
+}
+
+.confirm_commande_red {
+    background-color: #BE2625;
+}
+
+.confirm_commande_black {
     background-color: #2f2f2f;
 }
 
@@ -458,7 +682,7 @@ body.modal_open {
   font-size: 16px;
 }
 
-/* Media queries */
+/* --- Media queries --- */
 @media screen and (max-width: 1200px) {
     .event_image img {
         aspect-ratio: 1/1;
@@ -486,7 +710,7 @@ body.modal_open {
     }
 }
 
-/* Mobile */
+/* --- Mobile --- */
 @media screen and (max-width: 700px) {
     .event_content {
         display: flex;
