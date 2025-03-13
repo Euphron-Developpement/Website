@@ -72,7 +72,7 @@ onMounted(() => {});
     </h4>
   </div>
 
-  <div class="LogoReseau">
+  <div class="LogoReseau mt-5">
     <svg
       width="32"
       height="32"
