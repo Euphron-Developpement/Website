@@ -1,13 +1,9 @@
-<script setup lang="ts">
-import NavBar from './components/NavBar.vue';
-</script>
-
 <template>
   <body>
     <div>
-      <!-- <NavBar /> -->
+      <NavBar style="margin-bottom: 20px" />
       <NuxtPage />
-      <Footer />
+      <Footer style="margin-top: 20px" />
     </div>
   </body>
 </template>

@@ -12,6 +12,9 @@ services:
         volumes:
             - .:/src
             - node_modules:/src/node_modules
+        networks:
+            - euphron
+
     app:
         container_name: euphron_frontend
         build:
@@ -19,3 +22,9 @@ services:
             dockerfile: ./Dockerfile
         ports:
             - '8080:3000'
+        networks:
+            - euphron
+
+networks:
+    euphron:
+        name: euphron
