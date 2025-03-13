@@ -12,7 +12,7 @@
         <div class="ButtonNav">
           <a
             href="/propos"
-            :class="{ TextNav: true, active: isActive('/about') }"
+            :class="{ TextNav: true, active: isActive('/propos') }"
             >A propos</a
           >
         </div>
