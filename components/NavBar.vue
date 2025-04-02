@@ -5,7 +5,7 @@
         <div class="close_nav" @click="toggleNav()">Fermer la navBar</div>
         <div class="ButtonNav">
           <a href="/" :class="{ TextNav: true, active: isActive('/') }"
-            >Accueil</a
+          >Accueil</a
           >
         </div>
 
@@ -13,7 +13,7 @@
           <a
             href="/propos"
             :class="{ TextNav: true, active: isActive('/propos') }"
-            >A propos</a
+          >A propos</a
           >
         </div>
 
@@ -21,7 +21,7 @@
           <a
             href="/event"
             :class="{ TextNav: true, active: isActive('/event') }"
-            >Evenement</a
+          >Evenement</a
           >
         </div>
 
@@ -29,7 +29,7 @@
           <a
             href="/article"
             :class="{ TextNav: true, active: isActive('/article') }"
-            >Article</a
+          >Article</a
           >
         </div>
 
@@ -37,7 +37,7 @@
           <a
             href="/contact"
             :class="{ TextNav: true, active: isActive('/contact') }"
-            >Contact</a
+          >Contact</a
           >
         </div>
       </div>
@@ -102,7 +102,7 @@ const isActive = (path) => {
 
 const toggleNav = () => {
   navOpen.value = !navOpen.value;
-  document.body.style.overflow= navOpen.value ? 'hidden' : 'auto';
+  document.body.style.overflow = navOpen.value ? 'hidden' : 'auto';
 };
 </script>
 
@@ -174,6 +174,7 @@ nav {
 .active {
   color: #be2625;
 }
+
 .burger_nav {
   display: none;
   background-color: #2f2f2f;
@@ -182,6 +183,7 @@ nav {
   aspect-ratio: 1/1;
   box-shadow: 0px 4px 4px #00000040;
 }
+
 .close_nav {
   display: none;
   background-color: #f8faec;
@@ -189,34 +191,42 @@ nav {
   padding: 4px;
   cursor: pointer;
 }
+
 @media (max-width: 1180px) {
   .NavBtn {
     gap: 0;
   }
+
   .TextNav {
     font-size: 16px;
   }
 }
+
 @media (max-width: 910px) {
   nav {
     width: 80vw;
   }
+
   .ButtonNav {
     margin-left: 13px;
   }
 }
+
 @media (max-width: 768px) {
   .contentNav {
     margin-top: 1rem;
   }
+
   nav {
     width: 93vw;
     box-shadow: none;
     justify-content: end;
   }
+
   .close_nav {
     display: block;
   }
+
   .NavBtn {
     position: absolute;
     height: 100vh;
@@ -228,15 +238,19 @@ nav {
     transform: translateX(100%);
     z-index: 999;
   }
+
   .NavBtn.active {
     transform: translateX(0);
   }
+
   .TextNav {
     color: #f8faec;
   }
+
   .burger_nav {
     display: block;
   }
+
   .ConteneurImage {
     margin: 0;
   }
