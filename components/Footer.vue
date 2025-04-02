@@ -60,38 +60,7 @@
     </svg>
     <div class="footer_content">
       <div class="footer_column">
-      <div class="footer_part">
-        <p>Accueil</p>
-      </div>
-      <div class="footer_part">
-        <p>À propos</p>
-        <a>Euphron, c'est quoi ?</a>
-        <a>Nos Partenaires</a>
-        <a>Le projet</a>
-      </div>
-      <div class="footer_part">
-        <p>Évènement</p>
-        <a> Réservations</a>
-      </div>
-      <div class="footer_part">
-        <p>Articles</p>
-        <a>Handi-Sport</a>
-        <a>Sport Mainstream</a>
-        <a>Sport inconnu</a>
-      </div>
-    </div>
-    <div class="footer_column">
       <div>
-        <div class="footer_part">
-          <p>Contact</p>
-          <a>euphronydays@gmail.com</a>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <p>Réseaux Sociaux</p>
-        </div>
         <div class="footer_social--icons">
           <svg
             width="38"
@@ -234,7 +203,8 @@ a {
 .footer_social--icons {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
+  padding-top: 1rem;
 }
 
 .footer_logo {
