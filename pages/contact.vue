@@ -40,7 +40,7 @@
         ></textarea>
         <button
           type="submit"
-          class="bg-black text-white px-10 py-5 text-2xl font-bold transition-all duration-100 ease-in-out hover:bg-gray-800"
+          class="bg-black text-white px-10 py-5 text-2xl font-bold transition-all duration-100 ease-in-out hover:bg-red-800"
         >
           ENVOYER
         </button>
