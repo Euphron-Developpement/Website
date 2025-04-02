@@ -12,7 +12,7 @@
         <div class="ButtonNav">
           <a
             href="/propos"
-            :class="{ TextNav: true, active: isActive('/about') }"
+            :class="{ TextNav: true, active: isActive('/propos') }"
             >A propos</a
           >
         </div>
@@ -102,7 +102,7 @@ const isActive = (path) => {
 
 const toggleNav = () => {
   navOpen.value = !navOpen.value;
-  document.body.style.overflowX = navOpen.value ? 'hidden' : 'auto';
+  document.body.style.overflow= navOpen.value ? 'hidden' : 'auto';
 };
 </script>
 
@@ -123,7 +123,7 @@ nav {
   margin-left: 15px;
   display: flex;
   height: 51px;
-  width: 987;
+  width: 987px;
   justify-content: center;
   align-items: center;
   gap: 1rem;
@@ -139,8 +139,7 @@ nav {
 
 .ButtonNav {
   margin-left: 17px;
-  gap: 0px;
-  opacity: 0px;
+  gap: 0;
   align-items: center;
   text-align: center;
 }
@@ -227,6 +226,7 @@ nav {
     background-color: #2f2f2f;
     flex-direction: column;
     transform: translateX(100%);
+    z-index: 999;
   }
   .NavBtn.active {
     transform: translateX(0);

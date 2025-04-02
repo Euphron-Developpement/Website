@@ -1,9 +1,9 @@
 <template>
   <body>
     <div>
-      <NavBar />
+      <NavBar style="margin-bottom: 20px" />
       <NuxtPage />
-      <Footer />
+      <Footer style="margin-top: 20px" />
     </div>
   </body>
 </template>
