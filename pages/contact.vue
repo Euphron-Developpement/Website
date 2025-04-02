@@ -51,8 +51,8 @@
 
 <style>
 .overflow-message {
-  margin-left: -50px;
-  margin-right: -30px; 
-  width: calc(110% + 20px); 
+  margin-left: -20px;
+  margin-right: 0px; 
+  width: calc(100% + 40px); 
 }
 </style>
