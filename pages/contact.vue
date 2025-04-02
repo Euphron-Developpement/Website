@@ -5,7 +5,6 @@
         QUELQUE CHOSE À NOUS DIRE ?
       </h2>
       <form class="w-full flex flex-col gap-4">
-        <!-- Conteneur Nom & Prénom -->
         <div class="flex gap-4">
           <input
             type="text"
