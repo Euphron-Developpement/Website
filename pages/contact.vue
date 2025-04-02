@@ -5,6 +5,7 @@
         QUELQUE CHOSE À NOUS DIRE ?
       </h2>
       <form class="w-full flex flex-col gap-4">
+        <!-- Conteneur Nom & Prénom -->
         <div class="flex gap-4">
           <input
             type="text"
@@ -12,7 +13,7 @@
             name="lastname"
             placeholder="Nom"
             required
-            class="flex-1 border-[1.5px] border-black px-4 py-2 text-xl font-light"
+            class="flex-1 min-w-0 border-[1.5px] border-black px-4 py-2 text-xl font-light"
           />
           <input
             type="text"
@@ -20,7 +21,7 @@
             name="firstname"
             placeholder="Prénom"
             required
-            class="flex-1 border-[1.5px] border-black px-4 py-2 text-xl font-light"
+            class="flex-1 min-w-0 border-[1.5px] border-black px-4 py-2 text-xl font-light"
           />
         </div>
         <input
