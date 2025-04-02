@@ -172,7 +172,7 @@
                                Si vous ne recevez pas cet email d'ici quelques minutes, pensez à vérifier votre dossier "spam" ou "courriers indésirables".
                             </p>
                             <p>L'évenement se déroulera le 15/01/2025 à la salle de Lyon Fight Club, dans le 7ème arrondissement de Lyon. Nous vous attendons à 18h!</p>
-                            <p>Pour toute question ou assistance, notre équipe reste à votre disposition à l'adresse suivante: euphronydays@gmail.com
+                            <p>Pour toute question ou assistance, notre équipe reste à votre disposition à l'adresse suivante: <span style="color: #BE2625;">euphronydays@gmail.com</span>
                                Nous avons hate de vous accueillir l'ors de l'évenement !
                             </p>
                             <p>Vous pouvez consulter votre QRC directement depuis votre compte, dans vos commandes</p>
