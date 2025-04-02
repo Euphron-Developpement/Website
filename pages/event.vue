@@ -109,12 +109,12 @@
                         </div>
                         <div class="commande_form">
                             <div 
-                                v-for="(visitor, index) in visitors.flatMap(v => Array(v.count).fill(v))"
+                                v-for="(visitor, index) in expandedVisitors"
                                 :key="index" 
                                 class="visitor_form_block"
                             > <!-- Boucle sur le count de chaque visiteurs -->
                                 <p style="font-size: 12px; margin-left: 3px; margin: 0px;">Personne {{ index + 1 }}</p>
-                                <form class="visitor_data_form">
+                                <form class="visitor_data_form" @input="checkAllInputs">
                                     <div>
                                         <label for="prenom">Prénom</label>
                                         <input v-model="visitor.prenom" name="prenom" type="text" placeholder="________________________" required/>
@@ -125,7 +125,7 @@
                                     </div>
                                     <div>
                                         <label for="age">Tranche d'age</label>
-                                        <input v-model="visitor.age" name="age" type="text" placeholder="________________________" required/>
+                                        <input v-model="visitor.selectedOption" name="age" type="text" placeholder="________________________" required readonly/>
                                     </div>
                                     <label>Sitation d'handicap</label>
                                     <div class="handicap_radio">
@@ -157,9 +157,33 @@
                             <button 
                                 @click="checkAllInputs" 
                                 type="submit" 
-                                class="confirm_commande_red"
+                                :class="formFilled ? 'confirm_commande_red' : 'confirm_commande_black'"
                             >
                                 Commander
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Partie Récap -->
+                    <div class="recap_modal" v-show="isRecapVisible">
+                        <div class="recap_commande">
+                            <p style="color: #BE2625;">Merci pour votre commande</p>
+                            <p>Votre réservation pour notre évenement à bien été pris en compte.
+                               Un email de confirmation vien de vous etre envoyé à <span style="color: #BE2625;">"adresse email"</span> avec tout les détails nécéssaires.
+                               Si vous ne recevez pas cet email d'ici quelques minutes, pensez à vérifier votre dossier "spam" ou "courriers indésirables".
+                            </p>
+                            <p>L'évenement se déroulera le 15/01/2025 à la salle de Lyon Fight Club, dans le 7ème arrondissement de Lyon. Nous vous attendons à 18h!</p>
+                            <p>Pour toute question ou assistance, notre équipe reste à votre disposition à l'adresse suivante: euphronydays@gmail.com
+                               Nous avons hate de vous accueillir l'ors de l'évenement !
+                            </p>
+                            <p>Vous pouvez consulter votre QRC directement depuis votre compte, dans vos commandes</p>
+                        </div>
+                        <div style="width: 100%; display: flex; justify-content: end;">
+                            <button 
+                                @click="" 
+                                type="button" 
+                                class="confirm_commande_red"
+                            >
+                                Télécharger
                             </button>
                         </div>
                     </div>
@@ -173,7 +197,7 @@
 
                                             <!-- ****** Script ****** -->
 <script setup lang="ts">
-    import { ref, watch } from "vue";
+    import { ref, watch, computed } from "vue";
 
             /* ------ Déclaration des vairables ------ */
     // Toggle pour savoir si la modal est ouverte ou fermée
@@ -188,15 +212,16 @@
     // Etat de visibilitée de la partie basse de la modale
     const isReservationVisible = ref(true);
     const isCommandeVisible = ref(false);
+    const isRecapVisible = ref(false);
 
     // Nombre total de visiteurs
     var totalVisitorsCount: number = 0;
 
     // Variable qui stocke l'icône sélectionnée
-    const selectedIndexes = ref<string[]>([]);
+    const selectedIndexes = ref<{ [key: number]: string }>({});
 
     // Booleen qui vérifie que tout les champs du formulaire sont remplis
-    const formError = ref<boolean>(false);
+    const formFilled = ref<boolean>(false);
 
             /* ------ Déclaration des structures ------ */
     // Structure du visiteur
@@ -208,7 +233,6 @@
         count: number;
         prenom: string;
         nom: string;
-        age: string; // String car type text entré dans le formulaire
         selectedIcon: string | null;
     }
 
@@ -223,7 +247,6 @@
             count: 1,
             prenom: "",
             nom: "",
-            age: "",
             selectedIcon: null
         });
         console.log(visitors)
@@ -272,7 +295,6 @@
     // Fonction du bouton reserver
     const reserve = () => {
     if (canReserve.value) {
-        alert("Réservation possible");
         totalVisitorCalculator();
         changeModalForm();
     } else {
@@ -280,31 +302,56 @@
     }
     };
 
+    // Création des instances de visiteurs pour permettre des valeurs uniques
+    const expandedVisitors = computed(() => {
+        return visitors.value.flatMap((visitor, visitorIndex) => 
+            Array.from({ length: visitor.count }, (_, i) => ({
+                ...visitor,  // Copie des propriétés du visiteur
+                uniqueId: `${visitorIndex}-${i}` // Ajout d'un identifiant unique
+            }))
+        );
+    });
+
     // Selection des icones pour les visiteurs
     const toggleSelection = (index: number, type: string) => {
         selectedIndexes.value[index] = selectedIndexes.value[index] === type ? '' : type;
+
+        // Mise à jour directe de `visitor.selectedIcon`
+        const visitor = expandedVisitors.value[index];
+        if (visitor) {
+            visitor.selectedIcon = selectedIndexes.value[index] || null;
+        }
     };
 
-    // Méthode pour vérifier si tous les champs sont remplis
+    // Méthode pour vérifier si tous les champs sont remplis (icônes comprises)
     const checkAllInputs = () => {
-    // Vérifie si tous les champs sont remplis
-    const allFieldsFilled = visitors.value.every(visitor => 
-        visitor.prenom.trim() && visitor.nom.trim() && visitor.age.trim()
-    );
+        // Vérifie si tous les champs sont remplis
+        const allFieldsFilled = expandedVisitors.value.every(visitor => 
+            visitor.prenom.trim() && 
+            visitor.nom.trim() && 
+            visitor.selectedIcon != "" && 
+            visitor.selectedIcon != null
+        );
 
-    if (allFieldsFilled) {
-        formError.value = false;
-        alert('Le formulaire est soumis avec succès !');
-    } else {
-        formError.value = true;
-        alert('Veuillez remplir tous les champs');
+    formFilled.value = allFieldsFilled;
+
+    if (formFilled.value) {
+        alert("Commande effectuée.");
+        changeModalForm();
     }
     };
 
     // Toggle contenu de la modale (reservation / commande)
     const changeModalForm = () => {
-        isReservationVisible.value = false;
-        isCommandeVisible.value = true;
+
+        // Dans le cas où on est sur la modale de reservation
+        if (isReservationVisible.value == true) {
+            isReservationVisible.value = false;
+            isCommandeVisible.value = true;
+        } else if (isReservationVisible.value == false && isCommandeVisible.value == true) { // Dans le cas où on est sur la modale commande
+            isCommandeVisible.value = false;
+            isRecapVisible.value = true;
+        }
     }
 
     // Empêche le scroll du body quand la modale est ouverte
@@ -365,7 +412,7 @@ body.modal_open {
 .reservation_btn {
     width: 140px;
     height: 140px;
-    background-color: #be2525b1;
+    background-color: #be2625;
     color: #F8FAEC;
     padding: 10px;
     border: none;
@@ -694,6 +741,25 @@ body.modal_open {
 
 .confirm_commande_black {
     background-color: #2f2f2f;
+}
+
+/* --- Partie Récapitulative --- */
+.recap_modal {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    font-family: Montserrat, sans-serif;
+}
+
+.recap_commande {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    text-wrap: wrap;
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
 }
 
 .close_modal_btn {
