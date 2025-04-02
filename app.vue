@@ -1,7 +1,7 @@
 <template>
   <body>
     <div>
-      <!-- <NavBar style="margin-bottom: 20px" /> -->
+      <NavBar style="margin-bottom: 20px" />
       <NuxtPage />
       <Footer style="margin-top: 20px" />
     </div>
