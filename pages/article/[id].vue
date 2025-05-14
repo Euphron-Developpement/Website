@@ -1,46 +1,45 @@
 <script setup lang="ts">
+import { findOneArticle } from '~/utils/api/route/article';
+import type { Article } from '~/entities/article';
 
+const route = useRoute();
+const { data: article, error: apiError } = await useAsyncData(
+  `article-${route.params.id}`,
+  () => findOneArticle(Number(route.params.id))
+    .then(response => response.data || null)
+    .catch(e => {
+      console.error(e);
+      return null;
+    })
+);
+const error = computed(() => apiError.value || article.value === null);
 </script>
 
 <template>
   <div class="article-detail">
     <Filters />
 
-    <section class="article-hero">
+    <div v-if="error" class="error">
+      Une erreur est survenue lors du chargement de l'article.
+    </div>
+
+    <section v-else-if="article" class="article-hero" :key="`article-${article.id}`">
       <div class="image-principale">
-        <img src="~/assets/pictures/Example/football.jpg" alt="Image de football" />
+        <img
+          :src="article.Media?.find(m => m.hero)?.url || '/placeholder-image.jpg'"
+          :alt="article.title"
+        />
       </div>
       <div class="titre-container">
         <div class="titre-section">
-          <h1>Mettre un titre, style phrase blablabla </h1>
+          <h1>{{ article.title }}</h1>
         </div>
       </div>
-      <div class="article-content">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non eros sit amet sapien gravida pretium.
-          Phasellus pellentesque urna nisi, elementum mollis erat sodales varius. Maecenas ac egestas lacus, in lobortis
-          urna. Mauris ultricies odio nisi, sed convallis est dapibus id. Phasellus mi nisi, sagittis quis mauris nec,
-          viverra bibendum orci. Quisque semper porta dui, a luctus metus imperdiet sed. Fusce molestie condimentum ex,
-          quis tempor sapien rhoncus ut. Donec molestie risus sed nibh molestie, in hendrerit tellus scelerisque.
-          Quisque id posuere augue, scelerisque congue metus. Nam sit amet lectus metus. Donec aliquam id diam eu
-          imperdiet. Morbi in turpis augue.
-        </p>
-        <p>
-          lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </p>
-        <p>
-          Nam consectetur cursus ultrices. In iaculis mattis bibendum. Nunc viverra interdum porttitor. Sed laoreet
-          lacus blandit hendrerit euismod. Vestibulum scelerisque porta ex sed aliquam. Duis vitae elit euismod,
-          sollicitudin tortor sit amet, condimentum arcu. Aliquam iaculis luctus orci. Donec vitae arcu fringilla,
-          varius tellus non, maximus turpis. Aenean vitae sodales metus. Fusce porttitor lacinia aliquam. Vivamus
-          blandit nisi nec erat tincidunt, a semper libero placerat. Integer quis interdum neque. Duis consequat
-          molestie ante.
-        </p>
-      </div>
+      <div v-if="article.content" class="article-content" v-html="article.content"></div>
     </section>
 
     <!-- Section articles liés -->
-    <section class="recommandations">
+    <section v-if="!error && article" class="recommandations">
       <h2 class="titre-section">Sur le même sujet :</h2>
       <div class="grille-recommandations">
         <article class="recommandation">
@@ -115,7 +114,7 @@
   top: -5rem;
   transform: translateX(-50%);
   background-color: #2f2f2f;
-  padding: clamp(2rem, 5vw, 3rem) clamp(0.5rem, 3vw, 1rem) clamp(0.5rem, 3vw, 1rem);
+  padding: clamp(1rem, 3vw, 2rem) clamp(0.5rem, 3vw, 1rem) clamp(0.5rem, 3vw, 1rem);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
@@ -165,6 +164,16 @@
 
 .article-content p {
   margin-bottom: clamp(1rem, 4vw, 2rem);
+}
+
+.error {
+  text-align: center;
+  padding: 3rem 0;
+  font-size: 1.2rem;
+}
+
+.error {
+  color: #c53030;
 }
 
 /* Section recommandations */
