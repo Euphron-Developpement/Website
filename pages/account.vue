@@ -70,34 +70,39 @@ const shopIconSrc = computed(() => {
     </div>
 
     <div v-if="activeSection === 'informations'" class="user-info">
-      <div class="info-row">
-        <span class="info-label">Prénom :</span>
-        <span class="info-value">...</span>
-        <button class="edit-button">Modifier</button>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Nom :</span>
-        <span class="info-value">...</span>
-        <button class="edit-button">Modifier</button>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Adresse mail :</span>
-        <span class="info-value">...</span>
-        <button class="edit-button">Modifier</button>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Mot de passe :</span>
-        <span class="info-value">...</span>
-        <button class="edit-button">Modifier</button>
-      </div>
-      <button class="button" id="logout-button">
-        <img
-          class="img-icons"
-          src="assets/icons/logout.svg"
-          alt="Se déconnecter icône"
-        />
-        <span>Déconnexion</span>
-      </button>
+      <div class="section-infos">
+            <div class="container-name">
+                <div class="info">
+                    <p>Prénom</p>
+                    <input type="text" placeholder="Prénom" />
+                </div>
+                <div class="info">
+                    <p>Nom</p>
+                    <input type="text" placeholder="Name" />
+                </div>
+                <div class="info">
+                    <p>Adresse email</p>
+                    <input type="email" placeholder="Adresse mail" />
+                </div>
+            </div>
+            <div class="container-mdp">
+                <div class="info">
+                    <p>Mot de passe</p>
+                    <input type="password" placeholder="*****" />
+                </div>
+                <div class="info">
+                    <p>Nouveau mot de passe</p>
+                    <input type="password" placeholder="*****"/>
+                </div>
+                <div class="info">
+                    <p>Confirmation mot de passe</p>
+                    <input type="password" placeholder="*****"/>
+                </div>
+            </div>
+            <div class="container-button">
+                <button class="button">Enregistrer</button>
+            </div>
+        </div>
     </div>
 
     <div v-if="activeSection === 'commandes'" class="commandes-container">
@@ -109,10 +114,10 @@ const shopIconSrc = computed(() => {
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(commande, index) in commandes" :key="index">
-            <td>{{ commande.type }}</td>
-            <td>{{ commande.quantite }}</td>
-          </tr>
+          <div v-for="(commande, index) in commandes" :key="index">
+            <p>{{ commande.type }}</p>
+            <p>{{ commande.quantite }}</p>
+          </div>
         </tbody>
       </table>
     </div>
