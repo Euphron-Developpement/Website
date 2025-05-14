@@ -10,8 +10,10 @@
       <div class="image-principale">
         <img src="~/assets/pictures/Example/football.jpg" alt="Image de football" />
       </div>
-      <div class="titre-section">
-        <h1>Mettre un titre, style phrase blablabla </h1>
+      <div class="titre-container">
+        <div class="titre-section">
+          <h1>Mettre un titre, style phrase blablabla </h1>
+        </div>
       </div>
       <div class="article-content">
         <p>
@@ -86,19 +88,38 @@
   position: relative;
 }
 
+.image-principale {
+  width: 100%;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.image-principale img {
+  width: 100%;
+  height: auto;
+  max-height: clamp(300px, 50vw, 615px);
+  object-fit: cover;
+}
+
+.titre-container {
+  position: relative;
+  height: auto;
+  margin-bottom: clamp(3rem, 8vw, 5rem);
+}
+
 .article-hero .titre-section {
   position: absolute;
   z-index: 2;
   width: 80%;
   left: 50%;
+  top: -5rem;
   transform: translateX(-50%);
   background-color: #2f2f2f;
   padding: clamp(2rem, 5vw, 3rem) clamp(0.5rem, 3vw, 1rem) clamp(0.5rem, 3vw, 1rem);
-  margin-top: -5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-.article-hero .titre-section h1 {
+.titre-section h1 {
   font-size: clamp(1.75rem, 5vw, 2.5rem);
   text-transform: uppercase;
   font-weight: 500;
@@ -121,28 +142,23 @@
   }
 }
 
-.image-principale {
-  width: 100%;
-  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
-}
+@media (max-width: 768px) {
+  .titre-section {
+    width: 95%;
+  }
 
-.image-principale img {
-  width: 100%;
-  height: auto;
-  max-height: clamp(300px, 50vw, 615px);
-  object-fit: cover;
+  .titre-container {
+    height: 3rem;
+  }
 }
 
 .article-content {
   font-size: clamp(1rem, 2.5vw, 1.2rem);
   line-height: 1.6;
-  margin: clamp(3rem, 8vw, 5rem) auto;
 }
 
 @media (max-width: 768px) {
   .article-content {
-    /* Marge supérieure importante */
-    margin: clamp(7rem, 10vw, 7rem) auto 0;
     padding: clamp(1rem, 4vw, 2rem);
   }
 }
