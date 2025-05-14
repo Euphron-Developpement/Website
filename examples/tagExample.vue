@@ -49,9 +49,9 @@
 </template>
 
 <script setup lang="ts">
-import {Tag} from "~/entities/tags";
-import {findAllTags, deleteTag, createTag, updateTag} from "~/utils/api/route/tags";
-import {ref} from "vue";
+import type { Tag } from '~/entities/tags';
+import { findAllTags, deleteTag, createTag, updateTag } from '~/utils/api/route/tags';
+import { ref } from 'vue';
 
 let data = [];
 await findAllTags().then((reponse) => {
@@ -98,7 +98,7 @@ const saveTagHandler = async () => {
       if (response) {
         const index = tags.value.findIndex(tag => tag.id === editingTagId.value);
         if (index !== -1) {
-          tags.value[index] = {...tags.value[index], ...newTag.value};
+          tags.value[index] = { ...tags.value[index], ...newTag.value };
         }
         showModal.value = false;
       }

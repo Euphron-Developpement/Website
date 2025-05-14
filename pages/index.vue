@@ -1,28 +1,11 @@
-
 <script setup>
-import { ref } from 'vue'
-import NavBar from '../components/NavBar.vue'
 import BodyHome from '~/components/BodyHome.vue';
 </script>
 
-
-
-
 <template>
   <body>
-
-
-  <BodyHome>
-
-  </BodyHome>
-
-
-
-
+    <BodyHome></BodyHome>
   </body>
-
-
-
 </template>
 
 <style>
@@ -31,19 +14,10 @@ import BodyHome from '~/components/BodyHome.vue';
 </style>
 
 <style scoped>
-
-
-
-
-
-body{
-  background-color: #F8FAEC;
+body {
+  background-color: #f8faec;
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
-
-
-
-
 </style>
