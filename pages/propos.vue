@@ -84,15 +84,158 @@
       <div class="expander"></div>
     </div>
   </div>
+  <div class="arrow">
+    <svg
+      width="118"
+      height="43"
+      viewBox="0 0 118 43"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M59.0023 42.6054L117.294 11.7453L111.211 0.255859L59.0023 27.8959L6.79351 0.255859L0.710938 11.7453L59.0023 42.6054Z"
+        fill="#2F2F2F"
+      />
+    </svg>
+  </div>
+  <div class="mayLike">
+    <h2>VOUS POURRIEZ AIMER</h2>
+    <div class="article-cards">
+      <div class="article-card">
+        <div class="image-wrapper">
+          <img src="~/assets/pictures/Carrousel/Boxe.jpeg" alt="" />
+        </div>
+        <div class="article-content">
+          <h3>Lorem Ipsum</h3>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus
+            incidunt voluptas at sunt nam corporis explicabo perferendis
+            corrupti neque, delectus aspernatur aut aperiam consectetur minima
+            quidem saepe quia quaerat excepturi.
+          </p>
+          <div class="article-meta">
+            <span>Xavier</span>
+            <span>13/12/2024</span>
+          </div>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="image-wrapper">
+          <img src="~/assets/pictures/Carrousel/Tenis.jpg" alt="" />
+        </div>
+        <div class="article-content">
+          <h3>Lorem Ipsum</h3>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus
+            incidunt voluptas at sunt nam corporis explicabo perferendis
+            corrupti neque, delectus aspernatur aut aperiam consectetur minima
+            quidem saepe quia quaerat excepturi.
+          </p>
+          <div class="article-meta">
+            <span>Gregory</span>
+            <span>11/09/2024</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
-<script setup>
+
+<script setup lang="ts">
+import { ref } from 'vue';
 const isHovered = ref([false, false, false]);
 </script>
+
 <style>
+.article-card {
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: var(--primary-white, #ffffff);
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  font-family: 'Montserrat';
+}
+.image-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center; /* centrer le recadrage */
+  display: block;
+}
+.article-card h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.article-content {
+  position: relative;
+  font-size: 16px;
+  margin: 2rem 0;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pic {
+  aspect-ratio: 1/1;
+  background-color: #f0f0f0;
+  margin: 0.5rem 0;
+  border-radius: 4px;
+}
+
+.article-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: #666;
+}
+.mayLike {
+  margin: 2rem 0;
+  padding: 1rem;
+}
+
+.mayLike h2 {
+  margin-bottom: 1rem;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.article-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .article-cards {
+    flex-direction: column;
+  }
+}
+
 .cards {
   display: flex;
   justify-content: space-between;
   margin: 1rem 0;
+}
+.arrow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 3rem 0;
 }
 .block_card {
   position: relative;
@@ -277,5 +420,13 @@ const isHovered = ref([false, false, false]);
 .block_card:nth-child(3).ishover h2 {
   transform: translateX(-100%);
   z-index: -2 !important;
+}
+.mayLike {
+  margin: 0 3rem;
+}
+.mayLike > h2 {
+  font-family: 'Montserrat';
+  font-size: 2rem;
+  font-weight: 600;
 }
 </style>
