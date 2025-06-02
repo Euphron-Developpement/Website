@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import img1 from "../assets/Pictures/Carrousel/Boxe.jpeg";
-import img2 from "../assets/Pictures/Carrousel/Natation.jpg";
-import img3 from "../assets/Pictures/Carrousel/Equitation.jpg";
-import img4 from "../assets/Pictures/Carrousel/Tenis.jpg";
+import img1 from "../assets/pictures/Carrousel/Boxe.jpeg";
+import img2 from "../assets/pictures/Carrousel/Natation.jpg";
+import img3 from "../assets/pictures/Carrousel/Equitation.jpg";
+import img4 from "../assets/pictures/Carrousel/Tenis.jpg";
 
 export default {
   data() {

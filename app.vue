@@ -13,6 +13,10 @@
 </style>
 
 <style scoped>
+* {
+  margin: 0;
+}
+
 body {
   overflow-x: hidden;
   background-color: #f8faec;
